@@ -1,9 +1,7 @@
-/**
- *  @author Luca Pietro Borsani
- */
 
-#ifndef SENDACK_H
-#define SENDACK_H
+
+#ifndef SMARTBRACELETS_H
+#define SMARTBRACELETS_H
 
 //payload of the msg
 typedef nx_struct my_msg {

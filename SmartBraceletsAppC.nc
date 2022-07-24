@@ -1,19 +1,19 @@
 /**
- *  Configuration file for wiring of sendAckC module to other common 
+ *  Configuration file for wiring of SmartBraceletsC module to other common 
  *  components needed for proper functioning
  *
- *  @author Luca Pietro Borsani
+ *  @authors Alfredo Landi, Emanuele Diasco
  */
 
-#include "sendAck.h"
+#include "SmartBracelets.h"
 
-configuration sendAckAppC {}
+configuration SmartBraceletsAppC {}
 
 implementation {
 
 
-/****** COMPONENTS *****/
-  components MainC, sendAckC as App;
+  /****** COMPONENTS *****/
+  components MainC, SmartBraceletsC as App;
   //add the other components here
   components new TimerMilliC() as t;
   components new FakeSensorC();
@@ -21,7 +21,7 @@ implementation {
   components new AMSenderC(AM_MY_MSG);
   components new AMReceiverC(AM_MY_MSG);
 
-/****** INTERFACES *****/
+  /****** INTERFACES *****/
   //Boot interface
   App.Boot -> MainC.Boot;
 

@@ -1,15 +1,15 @@
 /**
- *  Source file for implementation of module sendAckC in which
+ *  Source file for implementation of module SmartBraceletsC in which
  *  the node 1 send a request to node 2 until it receives a response.
  *  The reply message contains a reading from the Fake Sensor.
  *
- *  @author Luca Pietro Borsani
+ *  @authors Alfredo Landi, Emanuele Diasco
  */
 
-#include "sendAck.h"
+#include "SmartBracelets.h"
 #include "Timer.h"
 
-module sendAckC {
+module SmartBraceletsC {
 
   uses {
   /****** INTERFACES *****/
