@@ -21,11 +21,11 @@ typedef nx_struct my_data {
 //payload of the msg
 typedef nx_struct bracelets_msg {
 	nx_uint8_t msg_type;
-	nx_struct my_data;
-} bracelets_msg_t;
+	my_data_t my_data;
+} my_msg_t;
 
 #define REQ 1
-#define RESP 2 
+#define RESP 2
 
 enum{
 	AM_MY_MSG = 6,
