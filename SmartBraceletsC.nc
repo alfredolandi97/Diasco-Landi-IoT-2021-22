@@ -61,7 +61,7 @@ module SmartBraceletsC {
 		return;
 	  }
 	  mess->msg_type = REQ;
-	  mess->msg_counter = counter;
+	  
 	  
 	  if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
 	  		dbg("radio_ack", "Acknowledgements are enabled\n");
@@ -76,7 +76,7 @@ module SmartBraceletsC {
 	     dbg("radio_pack",">>>Pack\n \t Payload length %hhu \n", call Packet.payloadLength( &packet ) );
 	     dbg_clear("radio_pack","\t Payload Sent\n" );
 		 dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-		 dbg_clear("radio_pack", "\t\t counter: %hhu \n", mess->msg_counter);
+		 
 		 
   	}
 	 
@@ -131,8 +131,8 @@ module SmartBraceletsC {
 	 * When the timer fires, we send a request
 	 * Fill this part...
 	 */
-	 sendReq();
-	 counter++;
+	 sendResp();
+	 
   }
   
 
@@ -184,8 +184,6 @@ module SmartBraceletsC {
       	dbg("radio_pack", ">>>Pack \n");
       	dbg_clear("radio_pack","\t\t Payload Received\n" );
 	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-	  	dbg_clear("radio_pack", "\t\t counter: %hhu \n", mess->msg_counter);
-	  	counter = mess->msg_counter;
 	  	dbg("radio_send", "Calling sendResp()... at %s\n", sim_time_string());
 	  	sendResp();
 	  }else if(mess->msg_type==RESP){
@@ -193,7 +191,6 @@ module SmartBraceletsC {
       	dbg("radio_pack", ">>>Pack \n");
       	dbg_clear("radio_pack","\t\t Payload Received\n" );
 	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-	  	dbg_clear("radio_pack", "\t\t counter: %hhu \n", mess->msg_counter);
 	  	dbg_clear("radio_pack", "\t\t value: %hhu \n", mess->value);
 	  }
       return buf;
