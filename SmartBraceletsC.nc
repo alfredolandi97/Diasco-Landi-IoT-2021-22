@@ -46,6 +46,7 @@ module SmartBraceletsC {
   
   
   //***************** Send request function ********************//
+  //EMA
   void sendReq() {
 	/* This function is called when we want to send a request
 	 *
@@ -83,6 +84,7 @@ module SmartBraceletsC {
  }        
 
   //****************** Task send response *****************//
+  //DO NOT CHANGE
   void sendResp() {
   	/* This function is called when we receive the REQ message.
   	 * Nothing to do here. 
@@ -93,6 +95,7 @@ module SmartBraceletsC {
   }
 
   //***************** Boot interface ********************//
+  //DO NOT CHANGE
   event void Boot.booted() {
 	dbg("boot","Application booted.\n");
 	/* Fill it ... */
@@ -100,6 +103,7 @@ module SmartBraceletsC {
   }
 
   //***************** SplitControl interface ********************//
+  //ALF
   event void SplitControl.startDone(error_t err){
     /* Fill it ... */
     if(err == SUCCESS) {
@@ -115,12 +119,14 @@ module SmartBraceletsC {
     
   }
   
+  //DO NOT CHANGE
   event void SplitControl.stopDone(error_t err){
     /* Fill it ... */
     dbg("role", "End of executon\n");
   }
 
   //***************** MilliTimer interface ********************//
+  //EMA
   event void MilliTimer.fired() {
 	/* This event is triggered every time the timer fires.
 	 * When the timer fires, we send a request
@@ -132,6 +138,7 @@ module SmartBraceletsC {
   
 
   //********************* AMSend interface ****************//
+  //ALF
   event void AMSend.sendDone(message_t* buf,error_t err) {
 	/* This event is triggered when a message is sent 
 	 *
@@ -164,6 +171,7 @@ module SmartBraceletsC {
   }
 
   //***************************** Receive interface *****************//
+  //EMA
   event message_t* Receive.receive(message_t* buf,void* payload, uint8_t len) {
 	/* This event is triggered when a message is received 
 	 *
@@ -205,6 +213,7 @@ module SmartBraceletsC {
   }
   
   //************************* Read interface **********************//
+  //ALF
   event void Read.readDone(error_t result, uint16_t data) {
 	/* This event is triggered when the fake sensor finishes to read (after a Read.read()) 
 	 *
