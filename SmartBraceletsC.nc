@@ -179,19 +179,21 @@ module SmartBraceletsC {
       my_msg_t* mess = (my_msg_t*)payload;
       dbg("radio_rec", "Received packet at time %s\n", sim_time_string());
       dbg("radio_pack"," Payload length %hhu \n", call Packet.payloadLength( buf ));
-      if(mess->msg_type==REQ){
+      if(mess->msg_type==REQ){ //Child
 	  	dbg("radio_pack","Request recieved... \n");
       	dbg("radio_pack", ">>>Pack \n");
       	dbg_clear("radio_pack","\t\t Payload Received\n" );
 	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
 	  	dbg("radio_send", "Calling sendResp()... at %s\n", sim_time_string());
 	  	sendResp();
-	  }else if(mess->msg_type==RESP){
+	  }else if(mess->msg_type==RESP){ //Parent
 	  	dbg("radio_pack","Response recieved... \n");
       	dbg("radio_pack", ">>>Pack \n");
       	dbg_clear("radio_pack","\t\t Payload Received\n" );
 	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-	  	dbg_clear("radio_pack", "\t\t value: %hhu \n", mess->value);
+	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data->x);
+	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data->y);
+	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data->status);
 	  }
       return buf;
     }
@@ -230,7 +232,10 @@ module SmartBraceletsC {
 	     dbg("radio_pack",">>>Pack\n \t Payload length %hhu \n", call Packet.payloadLength( &packet ) );
 	     dbg_clear("radio_pack","\t Payload Sent\n" );
 		 dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-		 dbg_clear("radio_pack", "\t\t value: %hhu \n", mess->value);
+		 dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
+	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data->x);
+	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data->y);
+	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data->status);
 		}
 
 	}
