@@ -12,10 +12,10 @@
 * 3 -> FALLING
 */
 
-typedef nx_struct my_data {
-	nx_uint8_t status;
-	nx_uint16_t x;
-	nx_uint16_t y;
+typedef struct my_data {
+	uint8_t status;
+	uint16_t x;
+	uint16_t y;
 } my_data_t;
 
 //payload of the msg

@@ -159,6 +159,7 @@ module SmartBraceletsC {
     	//Here there was the control on person number's last digit
     }else{
     	dbg("radio_ack", "ACK not recieved\n");
+    }
   }
 
   //***************************** Receive interface *****************//
@@ -191,9 +192,9 @@ module SmartBraceletsC {
       	dbg("radio_pack", ">>>Pack \n");
       	dbg_clear("radio_pack","\t\t Payload Received\n" );
 	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data->x);
-	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data->y);
-	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data->status);
+	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
+	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
+	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
 	  }
       return buf;
     }
@@ -204,7 +205,7 @@ module SmartBraceletsC {
   
   //************************* Read interface **********************//
   //ALF
-  event void Read.readDone(error_t result, my_data_t* data) {
+  event void Read.readDone(error_t result, my_data_t data) {
 	/* This event is triggered when the fake sensor finishes to read (after a Read.read()) 
 	 *
 	 * STEPS:
@@ -233,9 +234,9 @@ module SmartBraceletsC {
 	     dbg_clear("radio_pack","\t Payload Sent\n" );
 		 dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
 		 dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data->x);
-	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data->y);
-	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data->status);
+	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
+	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
+	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
 		}
 
 	}
