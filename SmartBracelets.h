@@ -3,12 +3,6 @@
 #ifndef SMARTBRACELETS_H
 #define SMARTBRACELETS_H
 
-//payload of the msg
-typedef nx_struct my_msg {
-	nx_uint8_t msg_type;
-	nx_uint8_t msg_counter;
-	nx_uint16_t value;
-} my_msg_t;
 
 /*
 * Table of statuses
@@ -17,11 +11,18 @@ typedef nx_struct my_msg {
 * 2 -> RUNNING
 * 3 -> FALLING
 */
+
 typedef nx_struct my_data {
 	nx_uint8_t status;
 	nx_uint16_t x;
 	nx_uint16_t y;
 } my_data_t;
+
+//payload of the msg
+typedef nx_struct bracelets_msg {
+	nx_uint8_t msg_type;
+	nx_struct my_data;
+} bracelets_msg_t;
 
 #define REQ 1
 #define RESP 2 
