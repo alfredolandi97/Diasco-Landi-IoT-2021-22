@@ -34,7 +34,6 @@ module SmartBraceletsC {
 } implementation {
 
   uint8_t last_digit = 8;
-  uint8_t counter=0;
   uint8_t rec_id;
   message_t packet;
   
@@ -57,7 +56,7 @@ module SmartBraceletsC {
 	 * 3. Send an UNICAST message to the correct node
 	 * X. Use debug statements showing what's happening (i.e. message fields)
 	 */
-	 my_msg_t* mess = (my_msg_t*)(call Packet.getPayload(&packet, sizeof(my_msg_t)));
+	 my_msg_t *mess = (my_msg_t*)(call Packet.getPayload(&packet, sizeof(my_msg_t)));
 	  if (mess == NULL) {
 		return;
 	  }
@@ -108,8 +107,8 @@ module SmartBraceletsC {
     /* Fill it ... */
     if(err == SUCCESS) {
     	dbg("radio", "Radio on!\n");
-		if (TOS_NODE_ID == 1){
-           call MilliTimer.startPeriodic( 1000 );
+		if (TOS_NODE_ID == 2){
+           call MilliTimer.startPeriodic( 10000 );
   		}
     }else{
 	//dbg for error
@@ -157,15 +156,7 @@ module SmartBraceletsC {
     }
     if(call PacketAcknowledgements.wasAcked(&packet) == TRUE){
     	dbg("radio_ack", "ACK recieved\n");
-    	if(TOS_NODE_ID == 1){
-    		req_ack_counter++;
-    		dbg("role", "req_ack_counter_incremented in MOTE 1, %hhu\n", req_ack_counter);
-    		if(req_ack_counter == last_digit + 1){
-    			dbg("radio_ack", "Last REQ-ACK recieved\n");
-    			dbg("role", "Stopping MilliTimer in MOTE 1\n");
-    			call MilliTimer.stop();
-    		}
-    	}
+    	//Here there was the control on person number's last digit
     }else{
     	dbg("radio_ack", "ACK not recieved\n");
   }
@@ -214,7 +205,7 @@ module SmartBraceletsC {
   
   //************************* Read interface **********************//
   //ALF
-  event void Read.readDone(error_t result, uint16_t data) {
+  event void Read.readDone(error_t result, my_data_t* data) {
 	/* This event is triggered when the fake sensor finishes to read (after a Read.read()) 
 	 *
 	 * STEPS:
@@ -228,8 +219,7 @@ module SmartBraceletsC {
 	  }
 	  
 	  mess->msg_type = RESP;
-	  mess->msg_counter = counter;
-	  mess->value = data;
+	  mess->my_data = data;
 	  
 	  if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
 	  		dbg("radio_ack", "Acknowledgements are enabled\n");
@@ -243,7 +233,6 @@ module SmartBraceletsC {
 	     dbg("radio_pack",">>>Pack\n \t Payload length %hhu \n", call Packet.payloadLength( &packet ) );
 	     dbg_clear("radio_pack","\t Payload Sent\n" );
 		 dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-		 dbg_clear("radio_pack", "\t\t counter: %hhu \n", mess->msg_counter);
 		 dbg_clear("radio_pack", "\t\t value: %hhu \n", mess->value);
 		}
 
