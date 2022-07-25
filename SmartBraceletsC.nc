@@ -28,7 +28,7 @@ module SmartBraceletsC {
     //other interfaces, if needed
 	
 	//interface used to perform sensor reading (to get the value from a sensor)
-	interface Read<uint16_t> as Read;
+	interface Read<my_data_t> as Read;
   }
 
 } implementation {

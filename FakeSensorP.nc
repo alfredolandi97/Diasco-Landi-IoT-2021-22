@@ -5,19 +5,18 @@
  *  @author Luca Pietro Borsani
  */
  
- #include <SmartBracelets.h>
  
 generic module FakeSensorP() {
 
-	provides interface Read<uint16_t>;
+	provides interface Read<my_data_t>;
 	
 	uses interface Random;
 	uses interface Timer<TMilli> as Timer0;
 
 } implementation {
-	my_data_t my_data;
 	uint8_t random_number;
 	uint8_t status;
+	my_data_t my_data;
 
 	//***************** Boot interface ********************//
 	command error_t Read.read(){
@@ -28,7 +27,7 @@ generic module FakeSensorP() {
 	//***************** Timer0 interface ********************//
 	event void Timer0.fired() {
 		
-		random_number = (call Random.rand16)%10;
+		random_number = (call Random.rand16()%10);
 		if(random_number<=2){
 			status = 0;
 		}else if(random_number>2 && random_number<=5){
