@@ -24,6 +24,7 @@ module SmartBraceletsC {
     
 	//interface for timer
 	interface Timer<TMilli> as MilliTimer;
+	interface Timer<TMilli> as ParentMilliTimer;
 	
     //other interfaces, if needed
 	
@@ -33,15 +34,16 @@ module SmartBraceletsC {
 
 } implementation {
 
-  uint8_t last_digit = 8;
-  uint8_t rec_id;
+
   message_t packet;
-  
-  //To count number of REQ-ACK recieved
-  uint8_t req_ack_counter=0;
+  bool alerted=FALSE;
+  my_data_t last_received_position;
+  uint8_t type;
 
   void sendReq();
   void sendResp();
+  
+  
   
   
   //***************** Send request function ********************//
@@ -187,13 +189,48 @@ module SmartBraceletsC {
 	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
 	  	dbg("radio_send", "Calling sendResp()... at %s\n", sim_time_string());
 	  }else if(mess->msg_type==RESP){ //Parent
-	  	dbg("radio_pack","Response recieved... \n");
-      	dbg("radio_pack", ">>>Pack \n");
-      	dbg_clear("radio_pack","\t\t Payload Received\n" );
-	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
-	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
-	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
+	  	if(alerted == FALSE){
+	  		dbg("radio_pack","Response recieved... \n");
+      		dbg("radio_pack", ">>>Pack \n");
+      		dbg_clear("radio_pack","\t\t Payload Received\n" );
+	  		dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
+	  		dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
+	  		dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
+	  		dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
+	  		//3 IS FALLING STATE 
+	  		if(mess->my_data.status == 3){
+	  			dbg("debug","ALERTED FALSE, FALLING RECEIVED");
+	  			call ParentMilliTimer.startPeriodic(60000);
+	  			last_received_position.x=mess->my_data.x;
+	  			last_received_position.y=mess->my_data.y;
+	  			last_received_position.status=mess->my_data.status;
+	  			type=mess->msg_type;
+	  			alerted=TRUE;
+	  		}
+	  	}else if(alerted==TRUE){
+	  		dbg("radio_pack","Response recieved... \n");
+      		dbg("radio_pack", ">>>Pack \n");
+      		dbg_clear("radio_pack","\t\t Payload Received\n" );
+	  		dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
+	  		dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
+	  		dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
+	  		dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
+	  		if (mess->my_data.status==3){
+	  			dbg("debug","ALERTED TRUE, FALLING RECEIVED");
+	  			call ParentMilliTimer.stop();
+	  			call ParentMilliTimer.startPeriodic(60000);
+	  			last_received_position.x=mess->my_data.x;
+	  			last_received_position.y=mess->my_data.y;
+	  			last_received_position.status=mess->my_data.status;
+	  			type=mess->msg_type;
+	  			
+			}else{
+				dbg("debug","ALERTED TRUE, NO-MORE EMERGENCY");
+				alerted=FALSE;
+				call ParentMilliTimer.stop();
+			}
+			
+	  	}
 	  	sendReq();
 	  }
       return buf;
@@ -238,6 +275,17 @@ module SmartBraceletsC {
 	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
 		}
 
+	}
+	
+	event void ParentMilliTimer.fired(){
+		dbg("radio_pack","No more response received... \n");
+      	dbg("radio_pack", ">>>Last position received: \n");
+	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", type);
+	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", last_received_position.x);
+	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", last_received_position.y);
+	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", last_received_position.status);
+	    dbg_clear("radio_pack", "\t\t MISSING ALARM \n ");
+	  	call ParentMilliTimer.stop();
 	}
 }
 

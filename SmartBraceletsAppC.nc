@@ -38,6 +38,7 @@ implementation {
   
   //Timer interface
   App.MilliTimer -> t;
+  App.ParentMilliTimer -> t;
   
   //Fake Sensor read
   App.Read -> FakeSensorC.Read;
