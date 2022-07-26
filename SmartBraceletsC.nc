@@ -200,7 +200,7 @@ module SmartBraceletsC {
 	  		//3 IS FALLING STATE 
 	  		if(mess->my_data.status == 3){
 	  			dbg("debug","ALERTED FALSE, FALLING RECEIVED");
-	  			call ParentMilliTimer.startPeriodic(60000);
+	  			call ParentMilliTimer.startOneShotAt(0,60000);
 	  			last_received_position.x=mess->my_data.x;
 	  			last_received_position.y=mess->my_data.y;
 	  			last_received_position.status=mess->my_data.status;
@@ -218,7 +218,7 @@ module SmartBraceletsC {
 	  		if (mess->my_data.status==3){
 	  			dbg("debug","ALERTED TRUE, FALLING RECEIVED");
 	  			call ParentMilliTimer.stop();
-	  			call ParentMilliTimer.startPeriodic(60000);
+	  			call ParentMilliTimer.startOneShotAt(0,60000);
 	  			last_received_position.x=mess->my_data.x;
 	  			last_received_position.y=mess->my_data.y;
 	  			last_received_position.status=mess->my_data.status;

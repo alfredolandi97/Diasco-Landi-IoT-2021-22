@@ -16,6 +16,7 @@ implementation {
   components MainC, SmartBraceletsC as App;
   //add the other components here
   components new TimerMilliC() as t;
+  components new TimerMilliC() as t2;
   components new FakeSensorC();
   components ActiveMessageC;
   components new AMSenderC(AM_MY_MSG);
@@ -38,7 +39,7 @@ implementation {
   
   //Timer interface
   App.MilliTimer -> t;
-  App.ParentMilliTimer -> t;
+  App.ParentMilliTimer -> t2;
   
   //Fake Sensor read
   App.Read -> FakeSensorC.Read;

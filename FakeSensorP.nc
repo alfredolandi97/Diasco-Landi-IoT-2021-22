@@ -28,14 +28,14 @@ generic module FakeSensorP() {
 	event void Timer0.fired() {
 		
 		random_number = (call Random.rand16()%10);
-		if(random_number<=2){
+		if(random_number>=0 && random_number<=2){
 			status = 0;
 		}else if(random_number>2 && random_number<=5){
 			status = 1;
-		}else if(random_number>5 && random_number<=8){
-			status = 2;
-		}else{
+		}else if(random_number==6){
 			status = 3;
+		}else if (random_number>=7 && random_number<=9){
+			status = 2;
 		}
 		
 		my_data.status = status;	
