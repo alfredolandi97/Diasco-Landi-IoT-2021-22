@@ -186,7 +186,6 @@ module SmartBraceletsC {
       	dbg_clear("radio_pack","\t\t Payload Received\n" );
 	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
 	  	dbg("radio_send", "Calling sendResp()... at %s\n", sim_time_string());
-	  	sendResp();
 	  }else if(mess->msg_type==RESP){ //Parent
 	  	dbg("radio_pack","Response recieved... \n");
       	dbg("radio_pack", ">>>Pack \n");
@@ -195,6 +194,7 @@ module SmartBraceletsC {
 	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
 	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
 	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
+	  	sendReq();
 	  }
       return buf;
     }
@@ -232,7 +232,6 @@ module SmartBraceletsC {
 	     dbg("radio_send", "Packet passed to lower layer successfully!\n");
 	     dbg("radio_pack",">>>Pack\n \t Payload length %hhu \n", call Packet.payloadLength( &packet ) );
 	     dbg_clear("radio_pack","\t Payload Sent\n" );
-		 dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
 		 dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
 	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
 	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
