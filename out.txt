@@ -1,0 +1,979 @@
+********************************************
+*                                          *
+*             TOSSIM Script                *
+*                                          *
+********************************************
+Initializing mac....
+Initializing radio channels....
+    using topology file: topology.txt
+    using noise file: meyer-heavy.txt
+Initializing simulator....
+Activate debug message on channel init
+Activate debug message on channel boot
+Activate debug message on channel radio
+Activate debug message on channel radio_send_req
+Activate debug message on channel radio_ack
+Activate debug message on channel radio_rec
+Activate debug message on channel radio_pack
+Activate debug message on channel role
+Activate debug message on channel debug
+Creating node 1...
+>>>Will boot at time 0 [sec]
+Creating node 2...
+>>>Will boot at time 0 [sec]
+Creating radio channels...
+>>>Setting radio channel from node  1  to node  2  with gain  -60.0  dBm
+>>>Setting radio channel from node  2  to node  1  with gain  -60.0  dBm
+Initializing Closest Pattern Matching (CPM)...
+Reading noise model data file: meyer-heavy.txt
+Loading:##Done!
+>>>Creating noise model for node: 1
+>>>Creating noise model for node: 2
+Start simulation with TOSSIM! 
+
+
+
+DEBUG (1): Application booted.
+DEBUG (2): Application booted.
+DEBUG (1): Radio on!
+DEBUG (2): Radio on!
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 245 
+ 		 y-coordinate: 211 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:0:9.777542111
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 245 
+ 		 y-coordinate: 211 
+ 		 status: 3 
+ DEBUG (1): ALERTED FALSE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:0:9.777709957 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:0:9.788330012
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:0:9.788330012
+DEBUG (1): Packet sent... at time 0:0:9.788497858 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 141 
+ 		 y-coordinate: 127 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:0:19.545089707
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 141 
+ 		 y-coordinate: 127 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:0:19.545257553 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:0:19.551742501
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:0:19.551742501
+DEBUG (1): Packet sent... at time 0:0:19.551910346 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 135 
+ 		 y-coordinate: 88 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:0:29.317398018
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 135 
+ 		 y-coordinate: 88 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:0:29.317565864 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:0:29.321441574
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:0:29.321441574
+DEBUG (1): Packet sent... at time 0:0:29.321609419 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 136 
+ 		 y-coordinate: 252 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:0:39.078643771
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 136 
+ 		 y-coordinate: 252 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:0:39.078811617 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:0:39.085327082
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:0:39.085327082
+DEBUG (1): Packet sent... at time 0:0:39.085494927 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 203 
+ 		 y-coordinate: 233 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:0:48.846694904
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 203 
+ 		 y-coordinate: 233 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:0:48.846862750 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:0:48.854919344
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:0:48.854919344
+DEBUG (1): Packet sent... at time 0:0:48.855087189 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 201 
+ 		 y-coordinate: 0 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:0:58.611282313
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 201 
+ 		 y-coordinate: 0 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:0:58.611450159 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:0:58.620727448
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:0:58.620727448
+DEBUG (1): Packet sent... at time 0:0:58.620895294 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 166 
+ 		 y-coordinate: 166 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:1:8.376769985
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 166 
+ 		 y-coordinate: 166 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:1:8.376937830 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:1:8.385253822
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:1:8.385253822
+DEBUG (1): Packet sent... at time 0:1:8.385421667 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 25 
+ 		 y-coordinate: 214 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:1:18.138122549
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 25 
+ 		 y-coordinate: 214 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:1:18.138290394 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:1:18.143890337
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:1:18.143890337
+DEBUG (1): Packet sent... at time 0:1:18.144058183 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 71 
+ 		 y-coordinate: 51 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:1:27.902862544
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 71 
+ 		 y-coordinate: 51 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:1:27.903030390 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:1:27.909942581
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:1:27.909942581
+DEBUG (1): Packet sent... at time 0:1:27.910110426 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 201 
+ 		 y-coordinate: 252 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:1:37.671417214
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 201 
+ 		 y-coordinate: 252 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:1:37.671585060 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:1:37.681442180
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:1:37.681442180
+DEBUG (1): Packet sent... at time 0:1:37.681610026 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 142 
+ 		 y-coordinate: 53 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:1:47.437530493
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 142 
+ 		 y-coordinate: 53 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:1:47.437698338 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:1:47.447357096
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:1:47.447357096
+DEBUG (1): Packet sent... at time 0:1:47.447524941 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 136 
+ 		 y-coordinate: 17 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:1:57.200424185
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 136 
+ 		 y-coordinate: 17 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:1:57.200592031 
+DEBUG (2): ACK recieved
+DEBUG (1): Packet sent... at time 0:1:57.208679142 
+DEBUG (1): ACK not recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 10 
+ 		 y-coordinate: 224 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:2:6.972656203
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 10 
+ 		 y-coordinate: 224 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:2:6.972824048 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:2:6.982314960
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:2:6.982314960
+DEBUG (1): Packet sent... at time 0:2:6.982482805 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 65 
+ 		 y-coordinate: 131 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:2:16.738098098
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 65 
+ 		 y-coordinate: 131 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:2:16.738265944 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:2:16.746414090
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:2:16.746414090
+DEBUG (1): Packet sent... at time 0:2:16.746581935 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 153 
+ 		 y-coordinate: 23 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:2:26.497314444
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 153 
+ 		 y-coordinate: 23 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:2:26.497482290 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:2:26.506179749
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:2:26.506179749
+DEBUG (1): Packet sent... at time 0:2:26.506347595 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 205 
+ 		 y-coordinate: 184 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:2:36.267333950
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 205 
+ 		 y-coordinate: 184 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:2:36.267501795 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:2:36.276870637
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:2:36.276870637
+DEBUG (1): Packet sent... at time 0:2:36.277038483 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 216 
+ 		 y-coordinate: 153 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:2:46.031951876
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 216 
+ 		 y-coordinate: 153 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:2:46.032119721 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:2:46.038268977
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:2:46.038268977
+DEBUG (1): Packet sent... at time 0:2:46.038436823 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 40 
+ 		 y-coordinate: 195 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:2:55.793258663
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 40 
+ 		 y-coordinate: 195 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:2:55.793426509 
+DEBUG (2): ACK recieved
+DEBUG (1): Packet sent... at time 0:2:55.796890234 
+DEBUG (1): ACK not recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 218 
+ 		 y-coordinate: 41 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:3:5.562652562
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 218 
+ 		 y-coordinate: 41 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:3:5.562820408 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:3:5.568191470
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:3:5.568191470
+DEBUG (1): Packet sent... at time 0:3:5.568359316 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 107 
+ 		 y-coordinate: 176 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:3:15.332443187
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 107 
+ 		 y-coordinate: 176 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:3:15.332611033 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:3:15.334274231
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:3:15.334274231
+DEBUG (1): Packet sent... at time 0:3:15.334442077 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 29 
+ 		 y-coordinate: 146 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:3:25.093246438
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 29 
+ 		 y-coordinate: 146 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:3:25.093414284 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:3:25.102828902
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:3:25.102828902
+DEBUG (1): Packet sent... at time 0:3:25.102996748 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 117 
+ 		 y-coordinate: 90 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:3:34.862167317
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 117 
+ 		 y-coordinate: 90 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:3:34.862335163 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:3:34.870849518
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:3:34.870849518
+DEBUG (1): Packet sent... at time 0:3:34.871017363 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 200 
+ 		 y-coordinate: 35 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:3:44.622558583
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 200 
+ 		 y-coordinate: 35 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:3:44.622726429 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:3:44.629241894
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:3:44.629241894
+DEBUG (1): Packet sent... at time 0:3:44.629409740 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 37 
+ 		 y-coordinate: 227 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:3:54.389572125
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 37 
+ 		 y-coordinate: 227 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:3:54.389739971 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:3:54.394576979
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:3:54.394576979
+DEBUG (1): Packet sent... at time 0:3:54.394744824 
+DEBUG (1): ACK recieved
+DEBUG (2): Acknowledgements are enabled
+DEBUG (2): Preparing the response... 
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 2 
+ 		 x-coordinate: 6 
+ 		 y-coordinate: 160 
+ 		 status: 3 
+ DEBUG (1): Received packet at time 0:4:4.160842844
+DEBUG (1):  Payload length 6 
+DEBUG (1): Response recieved... 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 x-coordinate: 6 
+ 		 y-coordinate: 160 
+ 		 status: 3 
+ DEBUG (1): ALERTED TRUE, FALLING RECEIVED
+DEBUG (1): Acknowledgements are enabled
+DEBUG (1): Preparing the request... 
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 6 
+	 Payload Sent
+		 type: 1 
+ DEBUG (2): Packet sent... at time 0:4:4.161010690 
+DEBUG (2): ACK recieved
+DEBUG (2): Received packet at time 0:4:4.167694000
+DEBUG (2):  Payload length 6 
+DEBUG (2): Request recieved... 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ DEBUG (2): Calling sendResp()... at 0:4:4.167694000
+DEBUG (1): Packet sent... at time 0:4:4.167861846 
+DEBUG (1): ACK recieved
+
+
+
+Simulation finished!
