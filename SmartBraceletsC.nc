@@ -24,7 +24,7 @@ module SmartBraceletsC {
     interface PacketAcknowledgements;
     
 	//interface for timer
-	interface Timer<TMilli> as MilliTimer;
+	interface Timer<TMilli> as ChildMilliTimer;
 	interface Timer<TMilli> as ParentMilliTimer;
 	
     //other interfaces, if needed
@@ -88,11 +88,11 @@ module SmartBraceletsC {
 	  
 	     //TOSSIM
 	     dbg_clear("radio_pack","Starting packet sending\n" );
-		 dbg_clear("radio_pack","type: %hhu \n ", mess->msg_type);
+		 dbg_clear("radio_pack","type: %d\n", mess->msg_type);
 		 
 		 //COOJA
 		 printf("Starting packet sending\n" );
-		 printf("type: %hhu \n ", mess->msg_type);
+		 printf("type:%d\n", mess->msg_type);
 		 
 		 
   	}
@@ -133,7 +133,7 @@ module SmartBraceletsC {
     	printf("Split Control Start DONE!\n");
 		if (TOS_NODE_ID % 2 == 0){
 		 	printf("STARTING CHILD\n");
-           call MilliTimer.startPeriodic( 10000 );
+           call ChildMilliTimer.startPeriodic( 10000 );
   		}
     }else{
 	//dbg for error
@@ -155,7 +155,7 @@ module SmartBraceletsC {
 
   //***************** MilliTimer interface ********************//
   
-  event void MilliTimer.fired() {
+  event void ChildMilliTimer.fired() {
 	/* This event is triggered every time the timer fires.
 	 * When the timer fires, we send a request
 	 */
@@ -241,16 +241,16 @@ module SmartBraceletsC {
 	  		//TOSSIM
 	  		dbg("radio_pack","Message Received from the Child at time %s\n", sim_time_string());
       		dbg_clear("radio_pack", "I'm Parent n° %d\n", TOS_NODE_ID);
-	  		dbg_clear("radio_pack", "x-coordinate: %hhu \n ", mess->my_data.x);
-	  		dbg_clear("radio_pack", "y-coordinate: %hhu \n ", mess->my_data.y);
-	  		dbg_clear("radio_pack", "status: %hhu \n ", mess->my_data.status);
+	  		dbg_clear("radio_pack", "x-coordinate: %d\n", mess->my_data.x);
+	  		dbg_clear("radio_pack", "y-coordinate: %d\n", mess->my_data.y);
+	  		dbg_clear("radio_pack", "status: %d\n", mess->my_data.status);
 	  		
 	  		//COOJA
 	  		printf("Message Received from the Child\n");
       		printf("I'm Parent n° %d\n", TOS_NODE_ID);
-	  		printf("x-coordinate: %hhu \n ", mess->my_data.x);
-	  		printf("y-coordinate: %hhu \n ", mess->my_data.y);
-	  		printf("status: %hhu \n ", mess->my_data.status);
+	  		printf("x-coordinate: %d\n", mess->my_data.x);
+	  		printf("y-coordinate: %d\n", mess->my_data.y);
+	  		printf("status: %d\n", mess->my_data.status);
 	  		
 	  	if(alerted == FALSE){
 	  	
@@ -374,15 +374,15 @@ module SmartBraceletsC {
 	  
 	  	//TOSSIM
 	  	dbg_clear("radio_pack", "Reading data from Fake Sensor \n");
-	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
-	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
-	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
+	  	dbg_clear("radio_pack", "\t\t x-coordinate: %d\n", mess->my_data.x);
+	  	dbg_clear("radio_pack", "\t\t y-coordinate: %d\n", mess->my_data.y);
+	  	dbg_clear("radio_pack", "\t\t status: %d\n", mess->my_data.status);
 	  	
 	  	//COOJA
 	  	printf("Reading data from Fake Sensor \n");
-	  	printf("x-coordinate: %hhu \n ", mess->my_data.x);
-	  	printf("y-coordinate: %hhu \n ", mess->my_data.y);
-	  	printf("status: %hhu \n ", mess->my_data.status);
+	  	printf("x-coordinate: %d\n", mess->my_data.x);
+	  	printf("y-coordinate: %d\n", mess->my_data.y);
+	  	printf("status: %d\n", mess->my_data.status);
 	  	
 		}
 
@@ -395,16 +395,16 @@ module SmartBraceletsC {
 		//TOSSIM
 		dbg("radio_pack","No more response received after the last FALLING state... \n");
       	dbg("radio_pack", ">>>Last position received: \n");
-	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", last_received_position.x);
-	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", last_received_position.y);
-	    dbg_clear("radio_pack", "\t\t MISSING ALARM \n ");
+	  	dbg_clear("radio_pack", "\t\t x-coordinate: %d\n", last_received_position.x);
+	  	dbg_clear("radio_pack", "\t\t y-coordinate: %d\n", last_received_position.y);
+	    dbg_clear("radio_pack", "\t\t MISSING ALARM \n");
 	    
 	    //COOJA
 	    printf("No more response received after the last FALLING state...\n");
       	printf(">>>Last position received: \n");
-	  	printf("x-coordinate: %hhu \n ", last_received_position.x);
-	  	printf("y-coordinate: %hhu \n ", last_received_position.y);
-	    printf("MISSING ALARM \n ");
+	  	printf("x-coordinate: %d\n", last_received_position.x);
+	  	printf("y-coordinate: %d\n", last_received_position.y);
+	    printf("MISSING ALARM \n");
 	    
 	  	call ParentMilliTimer.stop();
 	}

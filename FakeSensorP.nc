@@ -2,7 +2,7 @@
  *  Source file for implementation of module Middleware
  *  which provides the main logic for middleware message management
  *
- *  @author Luca Pietro Borsani
+ *  @authors Alfredo Landi, Emanuele Diasco.
  */
  
  
@@ -39,8 +39,8 @@ generic module FakeSensorP() {
 		}
 		
 		my_data.status = status;	
-		my_data.x = call Random.rand16();
-		my_data.y = call Random.rand16();
+		my_data.x = call Random.rand16()/100;
+		my_data.y = call Random.rand16()/100;
 		signal Read.readDone( SUCCESS, my_data );
 	}
 }

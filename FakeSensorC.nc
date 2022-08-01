@@ -2,7 +2,7 @@
  *  Configuration file for wiring of FakeSensorP module to other common 
  *  components to simulate the behavior of a real sensor
  *
- *  @author Luca Pietro Borsani
+ *  @authors Alfredo Landi, Emanuele Diasco.
  */
  
 generic configuration FakeSensorC() {
@@ -12,17 +12,21 @@ generic configuration FakeSensorC() {
 } implementation {
 
 	components MainC, RandomC;
-	components new DummyFakeSensorP();
+	//components new DummyFakeSensorP();
+	components new FakeSensorP();
 	components new TimerMilliC();
 	
 	//Connects the provided interface
-	Read = DummyFakeSensorP;
+	Read = FakeSensorP;
+	//Read = DummyFakeSensorP;
 	
 	//Random interface and its initialization	
-	DummyFakeSensorP.Random -> RandomC;
+	FakeSensorP.Random -> RandomC;
+	//DummyFakeSensorP.Random -> RandomC;
 	RandomC <- MainC.SoftwareInit;
 	
 	//Timer interface	
-	DummyFakeSensorP.Timer0 -> TimerMilliC;
+	FakeSensorP.Timer0 -> TimerMilliC;
+	//DummyFakeSensorP.Timer0 -> TimerMilliC;
 
 }
