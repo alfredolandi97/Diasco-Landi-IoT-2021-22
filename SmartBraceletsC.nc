@@ -109,7 +109,7 @@ module SmartBraceletsC {
     /* Fill it ... */
     if(err == SUCCESS) {
     	dbg("radio", "Radio on!\n");
-		if (TOS_NODE_ID == 2){
+		if (TOS_NODE_ID % 2 == 0){
            call MilliTimer.startPeriodic( 10000 );
   		}
     }else{
@@ -199,8 +199,8 @@ module SmartBraceletsC {
 	  		dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
 	  		//3 IS FALLING STATE 
 	  		if(mess->my_data.status == 3){
-	  			dbg("debug","ALERTED FALSE, FALLING RECEIVED");
-	  			call ParentMilliTimer.startOneShotAt(0,60000);
+	  			dbg("debug","ALERTED FALSE, FALLING RECEIVED\n");
+	  			call ParentMilliTimer.startPeriodic(60000);
 	  			last_received_position.x=mess->my_data.x;
 	  			last_received_position.y=mess->my_data.y;
 	  			last_received_position.status=mess->my_data.status;
@@ -216,16 +216,16 @@ module SmartBraceletsC {
 	  		dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
 	  		dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
 	  		if (mess->my_data.status==3){
-	  			dbg("debug","ALERTED TRUE, FALLING RECEIVED");
+	  			dbg("debug","ALERTED TRUE, FALLING RECEIVED\n");
 	  			call ParentMilliTimer.stop();
-	  			call ParentMilliTimer.startOneShotAt(0,60000);
+	  			call ParentMilliTimer.startPeriodic(60000);
 	  			last_received_position.x=mess->my_data.x;
 	  			last_received_position.y=mess->my_data.y;
 	  			last_received_position.status=mess->my_data.status;
 	  			type=mess->msg_type;
 	  			
 			}else{
-				dbg("debug","ALERTED TRUE, NO-MORE EMERGENCY");
+				dbg("debug","ALERTED TRUE, NO-MORE EMERGENCY\n");
 				alerted=FALSE;
 				call ParentMilliTimer.stop();
 			}
