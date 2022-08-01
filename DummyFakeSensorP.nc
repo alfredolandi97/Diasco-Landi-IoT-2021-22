@@ -28,8 +28,8 @@ generic module DummyFakeSensorP() {
 	event void Timer0.fired() {
 		
 		my_data.status = 3;
-		my_data.x = call Random.rand16();
-		my_data.y = call Random.rand16();
+		my_data.x = call Random.rand16()/100;
+		my_data.y = call Random.rand16()/100;
 		signal Read.readDone( SUCCESS, my_data );
 	}
 }

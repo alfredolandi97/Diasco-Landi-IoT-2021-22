@@ -42,7 +42,7 @@ implementation {
   App.Packet -> AMSenderC;
   
   //Timer interface
-  App.MilliTimer -> t;
+  App.ChildMilliTimer -> t;
   App.ParentMilliTimer -> t2;
   
   //Fake Sensor read

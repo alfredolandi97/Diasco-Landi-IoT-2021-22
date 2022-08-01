@@ -40,15 +40,17 @@ module SmartBraceletsC {
   bool alerted=FALSE;
   my_data_t last_received_position;
   uint8_t type;
+  bool packetAcknoledged = TRUE;
+  
 
-  void sendReq();
-  void sendResp();
+  void sendParentReq();
+  void sendChildResp();
   
   
   
   
   //***************** Send request function ********************//
-  void sendReq() {
+  void sendParentReq() {
 	/* This function is called when we want to send a request
 	 *
 	 * STEPS:
@@ -100,7 +102,7 @@ module SmartBraceletsC {
  }        
 
   //****************** Task send response *****************//
-  void sendResp() {
+  void sendChildResp() {
   	/* This function is called when we receive the REQ message.
   	 * Nothing to do here. 
   	 * `call Read.read()` reads from the fake sensor.
@@ -133,7 +135,7 @@ module SmartBraceletsC {
     	printf("Split Control Start DONE!\n");
 		if (TOS_NODE_ID % 2 == 0){
 		 	printf("STARTING CHILD\n");
-           call ChildMilliTimer.startPeriodic( 10000 );
+           	call ChildMilliTimer.startPeriodic( 10000 );
   		}
     }else{
 	//dbg for error
@@ -159,7 +161,7 @@ module SmartBraceletsC {
 	/* This event is triggered every time the timer fires.
 	 * When the timer fires, we send a request
 	 */
-	 sendResp();
+	 sendChildResp();
 	 
   }
   
@@ -199,6 +201,9 @@ module SmartBraceletsC {
     	//COOJA
     	printf("ACK recieved\n");
     	
+    	packetAcknoledged = TRUE;
+    	
+    	
     }else{
     
     	//TOSSIM
@@ -206,6 +211,8 @@ module SmartBraceletsC {
     	
     	//CO0JA
     	printf("ACK not recieved\n");
+    	
+    	packetAcknoledged = FALSE;
     	
     }
   }
@@ -324,7 +331,7 @@ module SmartBraceletsC {
 			}
 			
 	  	}
-	  	sendReq();
+	  	sendParentReq();
 	  }
       return buf;
     }
@@ -355,37 +362,40 @@ module SmartBraceletsC {
 	  mess->msg_type = CHILD_RESP;
 	  mess->my_data = data;
 	  
-	  if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
+	  if(packetAcknoledged == TRUE){
+	  	if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
 	  
 	  		//TOSSIM
 	  		dbg("radio_ack", "Acknowledgements are enabled\n");
 	  		
 	  		//COOJA
 	  		printf("Acknowledgements are enabled\n");
-	  }else{
+	  	}else{
 	  		//TOSSIM
 	  		dbg("radio_ack", "Error in requesting ACKs to other mote\n");
 	  		
 	  		//COOJA
 	  		printf("Error in requesting ACKs to other mote\n");
-	  }
+	  	}
 	  
-	  if(call AMSend.send(1, &packet,sizeof(my_msg_t)) == SUCCESS){
 	  
-	  	//TOSSIM
-	  	dbg_clear("radio_pack", "Reading data from Fake Sensor \n");
-	  	dbg_clear("radio_pack", "\t\t x-coordinate: %d\n", mess->my_data.x);
-	  	dbg_clear("radio_pack", "\t\t y-coordinate: %d\n", mess->my_data.y);
-	  	dbg_clear("radio_pack", "\t\t status: %d\n", mess->my_data.status);
+	  	if(call AMSend.send(1, &packet,sizeof(my_msg_t)) == SUCCESS){  
+	  
+	  		//TOSSIM
+	  		dbg_clear("radio_pack", "Reading data from Fake Sensor \n");
+	  		dbg_clear("radio_pack", "\t\t x-coordinate: %d\n", mess->my_data.x);
+	  		dbg_clear("radio_pack", "\t\t y-coordinate: %d\n", mess->my_data.y);
+	  		dbg_clear("radio_pack", "\t\t status: %d\n", mess->my_data.status);
 	  	
-	  	//COOJA
-	  	printf("Reading data from Fake Sensor \n");
-	  	printf("x-coordinate: %d\n", mess->my_data.x);
-	  	printf("y-coordinate: %d\n", mess->my_data.y);
-	  	printf("status: %d\n", mess->my_data.status);
+	  		//COOJA
+	  		printf("Reading data from Fake Sensor \n");
+	  		printf("x-coordinate: %d\n", mess->my_data.x);
+	  		printf("y-coordinate: %d\n", mess->my_data.y);
+	  		printf("status: %d\n", mess->my_data.status);
 	  	
 		}
-
+	  }
+	  
 	}
 	/* This timer is fired when the child doesn't send any response to the Parent after 60 seconds from the last 
 	*  falling state received. 
