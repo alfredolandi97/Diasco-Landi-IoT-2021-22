@@ -24,8 +24,8 @@ typedef nx_struct bracelets_msg {
 	my_data_t my_data;
 } my_msg_t;
 
-#define REQ 1
-#define RESP 2
+#define PARENT_REQ 1
+#define CHILD_RESP 2
 
 enum{
 	AM_MY_MSG = 6,

@@ -6,6 +6,8 @@
  */
 
 #include "SmartBracelets.h"
+#define NEW_PRINTF_SEMANTICS
+#include "printf.h"
 
 configuration SmartBraceletsAppC {}
 
@@ -21,6 +23,8 @@ implementation {
   components ActiveMessageC;
   components new AMSenderC(AM_MY_MSG);
   components new AMReceiverC(AM_MY_MSG);
+  components SerialPrintfC;
+  components SerialStartC;
 
   /****** INTERFACES *****/
   //Boot interface

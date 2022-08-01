@@ -8,6 +8,7 @@
 
 #include "SmartBracelets.h"
 #include "Timer.h"
+#include "printf.h"
 
 module SmartBraceletsC {
 
@@ -47,7 +48,6 @@ module SmartBraceletsC {
   
   
   //***************** Send request function ********************//
-  //EMA
   void sendReq() {
 	/* This function is called when we want to send a request
 	 *
@@ -62,22 +62,37 @@ module SmartBraceletsC {
 	  if (mess == NULL) {
 		return;
 	  }
-	  mess->msg_type = REQ;
+	  mess->msg_type = PARENT_REQ;
 	  
 	  
 	  if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
+	  		//TOSSIM
 	  		dbg("radio_ack", "Acknowledgements are enabled\n");
+	  		
+	  		//COOJA
+	  		printf("Acknowledgements are enabled\n");
 	  }else{
+	  		//TOSSIM
 	  		dbg("radio_ack", "Error in requesting ACKs to other mote\n");
+	  		
+	  		//COOJA
+	  		printf("Error in requesting ACKs to other mote\n");
 	  }
-	  
+	  //TOSSIM
 	  dbg("radio_pack","Preparing the request... \n");
 	  
+	  //COOJA
+	  printf("Preparing the request... \n");
+	  
 	  if(call AMSend.send(2, &packet,sizeof(my_msg_t)) == SUCCESS){
-	     dbg("radio_send", "Packet passed to lower layer successfully!\n");
-	     dbg("radio_pack",">>>Pack\n \t Payload length %hhu \n", call Packet.payloadLength( &packet ) );
-	     dbg_clear("radio_pack","\t Payload Sent\n" );
-		 dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
+	  
+	     //TOSSIM
+	     dbg_clear("radio_pack","Starting packet sending\n" );
+		 dbg_clear("radio_pack","type: %hhu \n ", mess->msg_type);
+		 
+		 //COOJA
+		 printf("Starting packet sending\n" );
+		 printf("type: %hhu \n ", mess->msg_type);
 		 
 		 
   	}
@@ -85,7 +100,6 @@ module SmartBraceletsC {
  }        
 
   //****************** Task send response *****************//
-  //DO NOT CHANGE
   void sendResp() {
   	/* This function is called when we receive the REQ message.
   	 * Nothing to do here. 
@@ -96,20 +110,29 @@ module SmartBraceletsC {
   }
 
   //***************** Boot interface ********************//
-  //DO NOT CHANGE
   event void Boot.booted() {
-	dbg("boot","Application booted.\n");
-	/* Fill it ... */
+  
+  	//TOSSIM
+	dbg("boot","Application booted\n");
+	
+	//COOJA
+	printf("Application booted\n");
+	
 	call SplitControl.start();
   }
 
   //***************** SplitControl interface ********************//
-  //ALF
+  
   event void SplitControl.startDone(error_t err){
-    /* Fill it ... */
+    
     if(err == SUCCESS) {
-    	dbg("radio", "Radio on!\n");
+    	//TOSSIM
+    	dbg("radio", "Split Control Start DONE!\n");
+    	
+    	//COOJA
+    	printf("Split Control Start DONE!\n");
 		if (TOS_NODE_ID % 2 == 0){
+		 	printf("STARTING CHILD\n");
            call MilliTimer.startPeriodic( 10000 );
   		}
     }else{
@@ -120,18 +143,21 @@ module SmartBraceletsC {
     
   }
   
-  //DO NOT CHANGE
+  
   event void SplitControl.stopDone(error_t err){
-    /* Fill it ... */
-    dbg("role", "End of executon\n");
+  
+    //TOSSIM
+    dbg("role", "End of execution\n");
+    
+    //COOJA
+    printf("End of execution\n");
   }
 
   //***************** MilliTimer interface ********************//
-  //EMA
+  
   event void MilliTimer.fired() {
 	/* This event is triggered every time the timer fires.
 	 * When the timer fires, we send a request
-	 * Fill this part...
 	 */
 	 sendResp();
 	 
@@ -139,7 +165,7 @@ module SmartBraceletsC {
   
 
   //********************* AMSend interface ****************//
-  //ALF
+  
   event void AMSend.sendDone(message_t* buf,error_t err) {
 	/* This event is triggered when a message is sent 
 	 *
@@ -151,21 +177,40 @@ module SmartBraceletsC {
 	 * X. Use debug statements showing what's happening (i.e. message fields)
 	 */
 	 if (&packet == buf && err == SUCCESS) {
-      dbg("radio_send", "Packet sent...");
-      dbg_clear("radio_send", " at time %s \n", sim_time_string());
+	 //TOSSIM
+      dbg("radio_send", "Packet sent\n");
+      
+      //COOJA
+       printf("Packet sent\n");
+       
     }else{
-      dbgerror("radio_send", "Send done error!");
+    
+      //TOSSIM
+      dbgerror("radio_send", "Send done error!\n");
+      
+      //COOJA
+      printf("Send done error!\n");
     }
     if(call PacketAcknowledgements.wasAcked(&packet) == TRUE){
+    
+    	//TOSSIM
     	dbg("radio_ack", "ACK recieved\n");
-    	//Here there was the control on person number's last digit
+    	
+    	//COOJA
+    	printf("ACK recieved\n");
+    	
     }else{
+    
+    	//TOSSIM
     	dbg("radio_ack", "ACK not recieved\n");
+    	
+    	//CO0JA
+    	printf("ACK not recieved\n");
+    	
     }
   }
 
   //***************************** Receive interface *****************//
-  //EMA
   event message_t* Receive.receive(message_t* buf,void* payload, uint8_t len) {
 	/* This event is triggered when a message is received 
 	 *
@@ -180,26 +225,52 @@ module SmartBraceletsC {
 	}
     else {
       my_msg_t* mess = (my_msg_t*)payload;
-      dbg("radio_rec", "Received packet at time %s\n", sim_time_string());
-      dbg("radio_pack"," Payload length %hhu \n", call Packet.payloadLength( buf ));
-      if(mess->msg_type==REQ){ //Child
-	  	dbg("radio_pack","Request recieved... \n");
-      	dbg("radio_pack", ">>>Pack \n");
-      	dbg_clear("radio_pack","\t\t Payload Received\n" );
-	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-	  	dbg("radio_send", "Calling sendResp()... at %s\n", sim_time_string());
-	  }else if(mess->msg_type==RESP){ //Parent
+      
+      if(mess->msg_type==PARENT_REQ){ 
+      
+	  	//TOSSIM
+	  	dbg("radio_rec", "Message Received from the Parent at time %s\n", sim_time_string());
+	  	dbg_clear("radio_pack", "I'm Child n° %d\n", TOS_NODE_ID);
+	  	
+	  	//COOJA
+	  	printf("Message Received from the Parent\n");
+	  	printf("I'm Child n° %d\n", TOS_NODE_ID);
+	  	
+	  }else if(mess->msg_type==CHILD_RESP){  
+	  
+	  		//TOSSIM
+	  		dbg("radio_pack","Message Received from the Child at time %s\n", sim_time_string());
+      		dbg_clear("radio_pack", "I'm Parent n° %d\n", TOS_NODE_ID);
+	  		dbg_clear("radio_pack", "x-coordinate: %hhu \n ", mess->my_data.x);
+	  		dbg_clear("radio_pack", "y-coordinate: %hhu \n ", mess->my_data.y);
+	  		dbg_clear("radio_pack", "status: %hhu \n ", mess->my_data.status);
+	  		
+	  		//COOJA
+	  		printf("Message Received from the Child\n");
+      		printf("I'm Parent n° %d\n", TOS_NODE_ID);
+	  		printf("x-coordinate: %hhu \n ", mess->my_data.x);
+	  		printf("y-coordinate: %hhu \n ", mess->my_data.y);
+	  		printf("status: %hhu \n ", mess->my_data.status);
+	  		
 	  	if(alerted == FALSE){
-	  		dbg("radio_pack","Response recieved... \n");
-      		dbg("radio_pack", ">>>Pack \n");
-      		dbg_clear("radio_pack","\t\t Payload Received\n" );
-	  		dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-	  		dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
-	  		dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
-	  		dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
+	  	
+	  		//TOSSIM
+	  		dbg("radio_pack","Alerted is False\n");
+      		
+	  		
+	  		//COOJA
+	  		printf("Alerted is FALSE\n");
+	  		
+	  		
 	  		//3 IS FALLING STATE 
 	  		if(mess->my_data.status == 3){
-	  			dbg("debug","ALERTED FALSE, FALLING RECEIVED\n");
+	  		
+	  		    //TOSSIM
+	  			dbg("debug","Falling State Recieved\n");
+	  			
+	  			//COOJA
+	  			printf("Falling State Recieved\n");
+	  			
 	  			call ParentMilliTimer.startPeriodic(60000);
 	  			last_received_position.x=mess->my_data.x;
 	  			last_received_position.y=mess->my_data.y;
@@ -208,16 +279,32 @@ module SmartBraceletsC {
 	  			alerted=TRUE;
 	  		}
 	  	}else if(alerted==TRUE){
-	  		dbg("radio_pack","Response recieved... \n");
-      		dbg("radio_pack", ">>>Pack \n");
-      		dbg_clear("radio_pack","\t\t Payload Received\n" );
-	  		dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
-	  		dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
-	  		dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
-	  		dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
+	  		
+	  		//TOSSIM
+	  		dbg("radio_pack","Alerted is TRUE\n");
+      		
+	  		
+	  		//COOJA
+	  		printf("Alerted is TRUE\n");
+	  		
 	  		if (mess->my_data.status==3){
-	  			dbg("debug","ALERTED TRUE, FALLING RECEIVED\n");
+	  		
+	  			//TOSSIM
+	  			dbg("debug","Another consecutive Falling state received\n");
+	  			dbg("debug","STOPPING TIMER\n");
+	  			
+	  			//COOJA
+	  			printf("Another consecutive Falling state received\n");
+	  			printf("STOPPING TIMER\n");
+	  			
 	  			call ParentMilliTimer.stop();
+	  			
+	  			//TOSSIM
+	  			dbg("debug","RESTARTING TIMER\n");
+	  			
+	  			//COOJA
+	  			printf("RESTARTING TIMER \n");
+	  			
 	  			call ParentMilliTimer.startPeriodic(60000);
 	  			last_received_position.x=mess->my_data.x;
 	  			last_received_position.y=mess->my_data.y;
@@ -225,7 +312,13 @@ module SmartBraceletsC {
 	  			type=mess->msg_type;
 	  			
 			}else{
-				dbg("debug","ALERTED TRUE, NO-MORE EMERGENCY\n");
+			
+				//TOSSIM
+				dbg("debug","Update received,NO-MORE EMERGENCY\n");
+				
+				//COOJA
+				printf("Update received,NO-MORE EMERGENCY\n");
+				
 				alerted=FALSE;
 				call ParentMilliTimer.stop();
 			}
@@ -236,12 +329,16 @@ module SmartBraceletsC {
       return buf;
     }
     {
+      //TOSSIM	
       dbgerror("radio_rec", "Receiving error \n");
+      
+      //COOJA
+      printf("Receiving error \n");
+      
     }
   }
   
   //************************* Read interface **********************//
-  //ALF
   event void Read.readDone(error_t result, my_data_t data) {
 	/* This event is triggered when the fake sensor finishes to read (after a Read.read()) 
 	 *
@@ -255,36 +352,60 @@ module SmartBraceletsC {
 		return;
 	  }
 	  
-	  mess->msg_type = RESP;
+	  mess->msg_type = CHILD_RESP;
 	  mess->my_data = data;
 	  
 	  if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
+	  
+	  		//TOSSIM
 	  		dbg("radio_ack", "Acknowledgements are enabled\n");
+	  		
+	  		//COOJA
+	  		printf("Acknowledgements are enabled\n");
 	  }else{
+	  		//TOSSIM
 	  		dbg("radio_ack", "Error in requesting ACKs to other mote\n");
+	  		
+	  		//COOJA
+	  		printf("Error in requesting ACKs to other mote\n");
 	  }
 	  
-	  dbg("radio_pack","Preparing the response... \n");
 	  if(call AMSend.send(1, &packet,sizeof(my_msg_t)) == SUCCESS){
-	     dbg("radio_send", "Packet passed to lower layer successfully!\n");
-	     dbg("radio_pack",">>>Pack\n \t Payload length %hhu \n", call Packet.payloadLength( &packet ) );
-	     dbg_clear("radio_pack","\t Payload Sent\n" );
-		 dbg_clear("radio_pack", "\t\t type: %hhu \n ", mess->msg_type);
+	  
+	  	//TOSSIM
+	  	dbg_clear("radio_pack", "Reading data from Fake Sensor \n");
 	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", mess->my_data.x);
 	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", mess->my_data.y);
 	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", mess->my_data.status);
+	  	
+	  	//COOJA
+	  	printf("Reading data from Fake Sensor \n");
+	  	printf("x-coordinate: %hhu \n ", mess->my_data.x);
+	  	printf("y-coordinate: %hhu \n ", mess->my_data.y);
+	  	printf("status: %hhu \n ", mess->my_data.status);
+	  	
 		}
 
 	}
-	
+	/* This timer is fired when the child doesn't send any response to the Parent after 60 seconds from the last 
+	*  falling state received. 
+	*/
 	event void ParentMilliTimer.fired(){
-		dbg("radio_pack","No more response received... \n");
+	
+		//TOSSIM
+		dbg("radio_pack","No more response received after the last FALLING state... \n");
       	dbg("radio_pack", ">>>Last position received: \n");
-	  	dbg_clear("radio_pack", "\t\t type: %hhu \n ", type);
 	  	dbg_clear("radio_pack", "\t\t x-coordinate: %hhu \n ", last_received_position.x);
 	  	dbg_clear("radio_pack", "\t\t y-coordinate: %hhu \n ", last_received_position.y);
-	  	dbg_clear("radio_pack", "\t\t status: %hhu \n ", last_received_position.status);
 	    dbg_clear("radio_pack", "\t\t MISSING ALARM \n ");
+	    
+	    //COOJA
+	    printf("No more response received after the last FALLING state...\n");
+      	printf(">>>Last position received: \n");
+	  	printf("x-coordinate: %hhu \n ", last_received_position.x);
+	  	printf("y-coordinate: %hhu \n ", last_received_position.y);
+	    printf("MISSING ALARM \n ");
+	    
 	  	call ParentMilliTimer.stop();
 	}
 }
