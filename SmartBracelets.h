@@ -22,6 +22,7 @@ typedef nx_struct my_data {
 typedef nx_struct bracelets_msg {
 	nx_uint8_t my_tos_node_id;
 	nx_uint64_t my_key;
+	nx_uint8_t special_code;
 	nx_uint8_t msg_type;
 	my_data_t my_data;
 } my_msg_t;

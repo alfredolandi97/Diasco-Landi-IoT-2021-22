@@ -27,8 +27,6 @@ module SmartBraceletsC {
 	interface Timer<TMilli> as ChildMilliTimer;
 	interface Timer<TMilli> as ParentMilliTimer;
 	
-    //other interfaces, if needed
-	
 	//interface used to perform sensor reading (to get the value from a sensor)
 	interface Read<my_data_t> as Read;
   }
@@ -38,23 +36,101 @@ module SmartBraceletsC {
 
   message_t packet;
   uint64_t mykey;
-  bool paired=FALSE;
+  uint8_t tos_node_id;
+  
+  /* Pairing phases
+   * 0-> Broadcasting phase.
+   * 1-> Special message phase
+   * 2-> Paired phase
+  */
+  
+  uint8_t paired=0;
   uint8_t coupled;
   bool alerted=FALSE;
   my_data_t last_received_position;
   uint8_t type;
-  bool packetAcknoledged = TRUE;
-  
-  
 
+  
+  
   void sendParentReq();
   void sendChildResp();
+  void sendBroadcastMessage(uint8_t tos_node_id, uint64_t mykey);
+  void sendSpecialMessage();
   
+  void sendBroadcastMessage(uint8_t tos_node_id, uint64_t mykey){
   
-  
-  
-  
-  
+  		my_msg_t *mess = (my_msg_t*)(call Packet.getPayload(&packet, sizeof(my_msg_t)));
+	 	if (mess == NULL) {
+		  return;
+	 	}
+	 	
+	  	//TOSSIM
+	  	dbg("radio_pack","Preparing the broadcast message...\n");
+	  
+	  	//COOJA
+	  	printf("Preparing the broadcast message...\n");
+	  	
+	  	mess->my_tos_node_id=tos_node_id;
+	  	mess->my_key=mykey;
+	  	mess->special_code=0;
+	  	
+	  	
+	    if(call AMSend.send(AM_BROADCAST_ADDR, &packet,sizeof(my_msg_t)) == SUCCESS){
+	  
+	     //TOSSIM
+	     dbg_clear("radio_pack","Starting broadcasting phase\n");
+	     dbg_clear("radio_pack","my_tos_node_id: %d\n", mess->my_tos_node_id);
+		 dbg_clear("radio_pack","my_key: %llu\n", mess->my_key);
+		 dbg_clear("radio_pack","special_code: %d\n", mess->special_code);
+		 
+		 //COOJA
+		 printf("Starting broadcasting phase\n");
+	     printf("my_tos_node_id: %d\n", mess->my_tos_node_id);
+		 printf("my_key: %llu\n", mess->my_key);
+		 printf("special code: %d\n", mess->special_code);
+		 
+  		}
+  	}
+  	
+  	void sendSpecialMessage(){
+  		my_msg_t *mess = (my_msg_t*)(call Packet.getPayload(&packet, sizeof(my_msg_t)));
+	  	if (mess == NULL) {
+			return;
+	  	}
+	  	
+	  	if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
+	  		//TOSSIM
+	  		dbg("radio_ack", "Acknowledgements are enabled\n");
+	  		
+	  		//COOJA
+	  		printf("Acknowledgements are enabled\n");
+	  	}else{
+	  		//TOSSIM
+	  		dbg("radio_ack", "Error in requesting ACKs to other mote\n");
+	  		
+	  		//COOJA
+	  		printf("Error in requesting ACKs to other mote\n");
+	  	}
+	 	 //TOSSIM
+	  	dbg("radio_pack","Preparing the special message...\n");
+	  
+	  	//COOJA
+	  	printf("Preparing the special message...\n");
+	  	
+	  	mess->special_code=paired;
+	  
+	  	if(call AMSend.send(coupled, &packet,sizeof(my_msg_t)) == SUCCESS){
+	  
+	     	//TOSSIM
+	    	dbg_clear("radio_pack","Starting sending special message\n");
+			dbg_clear("radio_pack","Special code: %d\n", mess->special_code);
+		 
+		 	//COOJA
+		 	printf("Starting sending special message\n");
+			printf("Special code: %d\n", mess->special_code);
+  		}		
+  	}
+  	
   //***************** Send request function ********************//
   void sendParentReq() {
 	/* This function is called when we want to send a request
@@ -92,7 +168,7 @@ module SmartBraceletsC {
 	  //COOJA
 	  printf("Preparing the request... \n");
 	  
-	  if(call AMSend.send(2, &packet,sizeof(my_msg_t)) == SUCCESS){
+	  if(call AMSend.send(coupled, &packet,sizeof(my_msg_t)) == SUCCESS){
 	  
 	     //TOSSIM
 	     dbg_clear("radio_pack","Starting packet sending\n" );
@@ -101,11 +177,9 @@ module SmartBraceletsC {
 		 //COOJA
 		 printf("Starting packet sending\n" );
 		 printf("type:%d\n", mess->msg_type);
-		 
-		 
+		 	 
   	}
-	 
- }        
+  }        
 
   //****************** Task send response *****************//
   void sendChildResp() {
@@ -163,14 +237,13 @@ module SmartBraceletsC {
 			mykey=13945678216985476321;
 			
   		}
+  		sendBroadcastMessage(TOS_NODE_ID,mykey);
+  		
     }else{
 	//dbg for error
 	call SplitControl.start();
     }
-
-    
   }
-  
   
   event void SplitControl.stopDone(error_t err){
   
@@ -219,29 +292,27 @@ module SmartBraceletsC {
       //COOJA
       printf("Send done error!\n");
     }
-    if(call PacketAcknowledgements.wasAcked(&packet) == TRUE){
+     if(paired!=0){
     
-    	//TOSSIM
-    	dbg("radio_ack", "ACK recieved\n");
-    	
-    	//COOJA
-    	printf("ACK recieved\n");
-    	
-    	packetAcknoledged = TRUE;
-    	
-    	
-    }else{
+    	if(call PacketAcknowledgements.wasAcked(&packet) == TRUE){
     
-    	//TOSSIM
-    	dbg("radio_ack", "ACK not recieved\n");
+    		//TOSSIM
+    		dbg("radio_ack", "ACK recieved\n");
     	
-    	//CO0JA
-    	printf("ACK not recieved\n");
+    		//COOJA
+    		printf("ACK recieved\n");
     	
-    	packetAcknoledged = FALSE;
+    	}else{
+    
+    		//TOSSIM
+    		dbg("radio_ack", "ACK not recieved\n");
     	
-    }
-  }
+    		//CO0JA
+    		printf("ACK not recieved\n");
+ 
+    	}
+      }
+  	}
 
   //***************************** Receive interface *****************//
   event message_t* Receive.receive(message_t* buf,void* payload, uint8_t len) {
@@ -258,9 +329,23 @@ module SmartBraceletsC {
 	}
     else {
       my_msg_t* mess = (my_msg_t*)payload;
-      if(paired==FALSE){
       
-      }else if(paired == TRUE){
+      if(paired==0){
+      
+      	if(mess->my_key == mykey){
+			coupled= mess-> my_tos_node_id;
+			paired=1;
+			sendSpecialMessage();	
+      	}else{
+      		sendBroadcastMessage(TOS_NODE_ID,mykey);
+      	}
+      
+      }else if(paired==1){
+      	if(mess->special_code==1){
+      		paired=2;
+      	}
+      	
+      }else if(paired==2){
       
         if(mess->msg_type==PARENT_REQ){ 
       
@@ -308,11 +393,11 @@ module SmartBraceletsC {
 	  			   printf("Falling State Recieved\n");
 	  			
 	  			   call ParentMilliTimer.startPeriodic(60000);
-	  				last_received_position.x=mess->my_data.x;
-	  				last_received_position.y=mess->my_data.y;
-	  				last_received_position.status=mess->my_data.status;
-	  				type=mess->msg_type;
-	  				alerted=TRUE;
+	  			   last_received_position.x=mess->my_data.x;
+	  			   last_received_position.y=mess->my_data.y;
+	  			   last_received_position.status=mess->my_data.status;
+	  			   type=mess->msg_type;
+	  			   alerted=TRUE;
 	  			}
 	  			
 	  		}else if(alerted==TRUE){
@@ -362,9 +447,9 @@ module SmartBraceletsC {
 			
 	  		}
      	 }
-      
-	  	sendParentReq();
-	  }//CHECK Funzione sopra
+     	 sendParentReq();
+	  }
+	  //CHECK Funzione sopra
       return buf;
     }
     {
@@ -394,7 +479,6 @@ module SmartBraceletsC {
 	  mess->msg_type = CHILD_RESP;
 	  mess->my_data = data;
 	  
-	  if(packetAcknoledged == TRUE){
 	  	if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
 	  
 	  		//TOSSIM
@@ -411,7 +495,7 @@ module SmartBraceletsC {
 	  	}
 	  
 	  
-	  	if(call AMSend.send(1, &packet,sizeof(my_msg_t)) == SUCCESS){  
+	  	if(call AMSend.send(coupled, &packet,sizeof(my_msg_t)) == SUCCESS){  
 	  
 	  		//TOSSIM
 	  		dbg_clear("radio_pack", "Reading data from Fake Sensor \n");
@@ -426,7 +510,7 @@ module SmartBraceletsC {
 	  		printf("status: %d\n", mess->my_data.status);
 	  	
 		}
-	  }
+	  
 	  
 	}
 	/* This timer is fired when the child doesn't send any response to the Parent after 60 seconds from the last 
