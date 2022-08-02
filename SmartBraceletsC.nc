@@ -37,14 +37,20 @@ module SmartBraceletsC {
 
 
   message_t packet;
+  uint64_t mykey;
+  bool paired=FALSE;
+  uint8_t coupled;
   bool alerted=FALSE;
   my_data_t last_received_position;
   uint8_t type;
   bool packetAcknoledged = TRUE;
   
+  
 
   void sendParentReq();
   void sendChildResp();
+  
+  
   
   
   
@@ -133,9 +139,29 @@ module SmartBraceletsC {
     	
     	//COOJA
     	printf("Split Control Start DONE!\n");
-		if (TOS_NODE_ID % 2 == 0){
-		 	printf("STARTING CHILD\n");
-           	call ChildMilliTimer.startPeriodic( 10000 );
+    	
+		if (TOS_NODE_ID == 1){
+		
+		 	printf("STARTING PARENT no.%d\n", TOS_NODE_ID);
+		 	mykey=17263987259413674582;
+		 	
+  		}else if(TOS_NODE_ID == 2){
+  		
+  			printf("STARTING CHILD no.%d\n", TOS_NODE_ID);
+  			mykey=17263987259413674582;
+  			call ChildMilliTimer.startPeriodic( 10000 );
+  			
+  		}else if(TOS_NODE_ID == 3){
+  		
+  			printf("STARTING PARENT no.%d\n", TOS_NODE_ID);
+  			mykey=13945678216985476321;
+  			
+  		}else if(TOS_NODE_ID == 4){
+  		
+  			printf("STARTING CHILD no.%d\n", TOS_NODE_ID);
+  			call ChildMilliTimer.startPeriodic( 10000 );
+			mykey=13945678216985476321;
+			
   		}
     }else{
 	//dbg for error
@@ -232,8 +258,11 @@ module SmartBraceletsC {
 	}
     else {
       my_msg_t* mess = (my_msg_t*)payload;
+      if(paired==FALSE){
       
-      if(mess->msg_type==PARENT_REQ){ 
+      }else if(paired == TRUE){
+      
+        if(mess->msg_type==PARENT_REQ){ 
       
 	  	//TOSSIM
 	  	dbg("radio_rec", "Message Received from the Parent at time %s\n", sim_time_string());
@@ -243,7 +272,7 @@ module SmartBraceletsC {
 	  	printf("Message Received from the Parent\n");
 	  	printf("I'm Child n° %d\n", TOS_NODE_ID);
 	  	
-	  }else if(mess->msg_type==CHILD_RESP){  
+	  	}else if(mess->msg_type==CHILD_RESP){  
 	  
 	  		//TOSSIM
 	  		dbg("radio_pack","Message Received from the Child at time %s\n", sim_time_string());
@@ -259,80 +288,83 @@ module SmartBraceletsC {
 	  		printf("y-coordinate: %d\n", mess->my_data.y);
 	  		printf("status: %d\n", mess->my_data.status);
 	  		
-	  	if(alerted == FALSE){
+	  	    if(alerted == FALSE){
 	  	
-	  		//TOSSIM
-	  		dbg("radio_pack","Alerted is False\n");
-      		
-	  		
-	  		//COOJA
-	  		printf("Alerted is FALSE\n");
-	  		
-	  		
-	  		//3 IS FALLING STATE 
-	  		if(mess->my_data.status == 3){
-	  		
 	  		    //TOSSIM
-	  			dbg("debug","Falling State Recieved\n");
-	  			
-	  			//COOJA
-	  			printf("Falling State Recieved\n");
-	  			
-	  			call ParentMilliTimer.startPeriodic(60000);
-	  			last_received_position.x=mess->my_data.x;
-	  			last_received_position.y=mess->my_data.y;
-	  			last_received_position.status=mess->my_data.status;
-	  			type=mess->msg_type;
-	  			alerted=TRUE;
-	  		}
-	  	}else if(alerted==TRUE){
-	  		
-	  		//TOSSIM
-	  		dbg("radio_pack","Alerted is TRUE\n");
+	  		    dbg("radio_pack","Alerted is False\n");
       		
 	  		
-	  		//COOJA
-	  		printf("Alerted is TRUE\n");
+	  		    //COOJA
+	  		    printf("Alerted is FALSE\n");
 	  		
-	  		if (mess->my_data.status==3){
+	  		
+	  		    //3 IS FALLING STATE 
+	  		    if(mess->my_data.status == 3){
+	  		
+	  		       //TOSSIM
+	  			   dbg("debug","Falling State Recieved\n");
+	  			
+	  			   //COOJA
+	  			   printf("Falling State Recieved\n");
+	  			
+	  			   call ParentMilliTimer.startPeriodic(60000);
+	  				last_received_position.x=mess->my_data.x;
+	  				last_received_position.y=mess->my_data.y;
+	  				last_received_position.status=mess->my_data.status;
+	  				type=mess->msg_type;
+	  				alerted=TRUE;
+	  			}
+	  			
+	  		}else if(alerted==TRUE){
 	  		
 	  			//TOSSIM
-	  			dbg("debug","Another consecutive Falling state received\n");
-	  			dbg("debug","STOPPING TIMER\n");
-	  			
+	  			dbg("radio_pack","Alerted is TRUE\n");
+      		
+	  		
 	  			//COOJA
-	  			printf("Another consecutive Falling state received\n");
-	  			printf("STOPPING TIMER\n");
+	  			printf("Alerted is TRUE\n");
+	  		
+	  			if (mess->my_data.status==3){
+	  		
+	  				//TOSSIM
+	  				dbg("debug","Another consecutive Falling state received\n");
+	  				dbg("debug","STOPPING TIMER\n");
 	  			
-	  			call ParentMilliTimer.stop();
+	  				//COOJA
+	  				printf("Another consecutive Falling state received\n");
+	  				printf("STOPPING TIMER\n");
 	  			
-	  			//TOSSIM
-	  			dbg("debug","RESTARTING TIMER\n");
+	  				call ParentMilliTimer.stop();
 	  			
-	  			//COOJA
-	  			printf("RESTARTING TIMER \n");
+	  				//TOSSIM
+	  				dbg("debug","RESTARTING TIMER\n");
 	  			
-	  			call ParentMilliTimer.startPeriodic(60000);
-	  			last_received_position.x=mess->my_data.x;
-	  			last_received_position.y=mess->my_data.y;
-	  			last_received_position.status=mess->my_data.status;
-	  			type=mess->msg_type;
+	  				//COOJA
+	  				printf("RESTARTING TIMER \n");
 	  			
-			}else{
+	  				call ParentMilliTimer.startPeriodic(60000);
+	  				last_received_position.x=mess->my_data.x;
+	  				last_received_position.y=mess->my_data.y;
+	  				last_received_position.status=mess->my_data.status;
+	  				type=mess->msg_type;
+	  			
+				}else{
 			
-				//TOSSIM
-				dbg("debug","Update received,NO-MORE EMERGENCY\n");
+					//TOSSIM
+					dbg("debug","Update received,NO-MORE EMERGENCY\n");
 				
-				//COOJA
-				printf("Update received,NO-MORE EMERGENCY\n");
+					//COOJA
+					printf("Update received,NO-MORE EMERGENCY\n");
 				
-				alerted=FALSE;
-				call ParentMilliTimer.stop();
-			}
+					alerted=FALSE;
+					call ParentMilliTimer.stop();
+				}
 			
-	  	}
+	  		}
+     	 }
+      
 	  	sendParentReq();
-	  }
+	  }//CHECK Funzione sopra
       return buf;
     }
     {
