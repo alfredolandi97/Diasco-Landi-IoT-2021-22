@@ -51,8 +51,6 @@ module SmartBraceletsC {
   uint8_t type;
 
   
-  
-  void sendParentReq();
   void sendChildResp();
   void sendBroadcastMessage(uint8_t tos_node_id, uint64_t mykey);
   void sendSpecialMessage();
@@ -130,56 +128,7 @@ module SmartBraceletsC {
 			printf("Special code: %d\n", mess->special_code);
   		}		
   	}
-  	
-  //***************** Send request function ********************//
-  void sendParentReq() {
-	/* This function is called when we want to send a request
-	 *
-	 * STEPS:
-	 * 1. Prepare the msg
-	 * 2. Set the ACK flag for the message using the PacketAcknowledgements interface
-	 *     (read the docs)
-	 * 3. Send an UNICAST message to the correct node
-	 * X. Use debug statements showing what's happening (i.e. message fields)
-	 */
-	 my_msg_t *mess = (my_msg_t*)(call Packet.getPayload(&packet, sizeof(my_msg_t)));
-	  if (mess == NULL) {
-		return;
-	  }
-	  mess->msg_type = PARENT_REQ;
-	  
-	  
-	  if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
-	  		//TOSSIM
-	  		dbg("radio_ack", "Acknowledgements are enabled\n");
-	  		
-	  		//COOJA
-	  		printf("Acknowledgements are enabled\n");
-	  }else{
-	  		//TOSSIM
-	  		dbg("radio_ack", "Error in requesting ACKs to other mote\n");
-	  		
-	  		//COOJA
-	  		printf("Error in requesting ACKs to other mote\n");
-	  }
-	  //TOSSIM
-	  dbg("radio_pack","Preparing the request... \n");
-	  
-	  //COOJA
-	  printf("Preparing the request... \n");
-	  
-	  if(call AMSend.send(coupled, &packet,sizeof(my_msg_t)) == SUCCESS){
-	  
-	     //TOSSIM
-	     dbg_clear("radio_pack","Starting packet sending\n" );
-		 dbg_clear("radio_pack","type: %d\n", mess->msg_type);
-		 
-		 //COOJA
-		 printf("Starting packet sending\n" );
-		 printf("type:%d\n", mess->msg_type);
-		 	 
-  	}
-  }        
+  
 
   //****************** Task send response *****************//
   void sendChildResp() {
@@ -223,7 +172,6 @@ module SmartBraceletsC {
   		
   			printf("STARTING CHILD no.%d\n", TOS_NODE_ID);
   			mykey=17263987259413674582;
-  			call ChildMilliTimer.startPeriodic( 10000 );
   			
   		}else if(TOS_NODE_ID == 3){
   		
@@ -233,7 +181,6 @@ module SmartBraceletsC {
   		}else if(TOS_NODE_ID == 4){
   		
   			printf("STARTING CHILD no.%d\n", TOS_NODE_ID);
-  			call ChildMilliTimer.startPeriodic( 10000 );
 			mykey=13945678216985476321;
 			
   		}
@@ -343,42 +290,32 @@ module SmartBraceletsC {
       }else if(paired==1){
       	if(mess->special_code==1){
       		paired=2;
+      		if(TOS_NODE_ID%2==0){
+      			call ChildMilliTimer.startPeriodic( 10000 );
+      		}
       	}
       	
-      }else if(paired==2){
-      
-        if(mess->msg_type==PARENT_REQ){ 
-      
-	  	//TOSSIM
-	  	dbg("radio_rec", "Message Received from the Parent at time %s\n", sim_time_string());
-	  	dbg_clear("radio_pack", "I'm Child n° %d\n", TOS_NODE_ID);
-	  	
-	  	//COOJA
-	  	printf("Message Received from the Parent\n");
-	  	printf("I'm Child n° %d\n", TOS_NODE_ID);
-	  	
-	  	}else if(mess->msg_type==CHILD_RESP){  
-	  
+      }else if(paired==2 && TOS_NODE_ID%2!=0){
+	  		  
 	  		//TOSSIM
 	  		dbg("radio_pack","Message Received from the Child at time %s\n", sim_time_string());
       		dbg_clear("radio_pack", "I'm Parent n° %d\n", TOS_NODE_ID);
-	  		dbg_clear("radio_pack", "x-coordinate: %d\n", mess->my_data.x);
-	  		dbg_clear("radio_pack", "y-coordinate: %d\n", mess->my_data.y);
-	  		dbg_clear("radio_pack", "status: %d\n", mess->my_data.status);
+	  		dbg_clear("radio_pack", "Received x-coordinate: %d\n", mess->my_data.x);
+	  		dbg_clear("radio_pack", "Received y-coordinate: %d\n", mess->my_data.y);
+	  		dbg_clear("radio_pack", "Received status: %d\n", mess->my_data.status);
 	  		
 	  		//COOJA
 	  		printf("Message Received from the Child\n");
       		printf("I'm Parent n° %d\n", TOS_NODE_ID);
-	  		printf("x-coordinate: %d\n", mess->my_data.x);
-	  		printf("y-coordinate: %d\n", mess->my_data.y);
-	  		printf("status: %d\n", mess->my_data.status);
+	  		printf("Received x-coordinate: %d\n", mess->my_data.x);
+	  		printf("Received y-coordinate: %d\n", mess->my_data.y);
+	  		printf("Received status: %d\n", mess->my_data.status);
 	  		
 	  	    if(alerted == FALSE){
 	  	
 	  		    //TOSSIM
 	  		    dbg("radio_pack","Alerted is False\n");
-      		
-	  		
+      	
 	  		    //COOJA
 	  		    printf("Alerted is FALSE\n");
 	  		
@@ -396,7 +333,6 @@ module SmartBraceletsC {
 	  			   last_received_position.x=mess->my_data.x;
 	  			   last_received_position.y=mess->my_data.y;
 	  			   last_received_position.status=mess->my_data.status;
-	  			   type=mess->msg_type;
 	  			   alerted=TRUE;
 	  			}
 	  			
@@ -431,7 +367,6 @@ module SmartBraceletsC {
 	  				last_received_position.x=mess->my_data.x;
 	  				last_received_position.y=mess->my_data.y;
 	  				last_received_position.status=mess->my_data.status;
-	  				type=mess->msg_type;
 	  			
 				}else{
 			
@@ -446,10 +381,7 @@ module SmartBraceletsC {
 				}
 			
 	  		}
-     	 }
-     	 sendParentReq();
 	  }
-	  //CHECK Funzione sopra
       return buf;
     }
     {
@@ -476,7 +408,6 @@ module SmartBraceletsC {
 		return;
 	  }
 	  
-	  mess->msg_type = CHILD_RESP;
 	  mess->my_data = data;
 	  
 	  	if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
@@ -498,16 +429,20 @@ module SmartBraceletsC {
 	  	if(call AMSend.send(coupled, &packet,sizeof(my_msg_t)) == SUCCESS){  
 	  
 	  		//TOSSIM
+	  		dbg_clear("radio_pack", "I'm the child no. %d\n", TOS_NODE_ID);
+	  		dbg_clear("radio_pack", "I'm sending to parent no. %d\n", coupled);
 	  		dbg_clear("radio_pack", "Reading data from Fake Sensor \n");
-	  		dbg_clear("radio_pack", "\t\t x-coordinate: %d\n", mess->my_data.x);
-	  		dbg_clear("radio_pack", "\t\t y-coordinate: %d\n", mess->my_data.y);
-	  		dbg_clear("radio_pack", "\t\t status: %d\n", mess->my_data.status);
+	  		dbg_clear("radio_pack", "\t\t read x-coordinate: %d\n", mess->my_data.x);
+	  		dbg_clear("radio_pack", "\t\t read y-coordinate: %d\n", mess->my_data.y);
+	  		dbg_clear("radio_pack", "\t\t read status: %d\n", mess->my_data.status);
 	  	
 	  		//COOJA
+	  		printf("I'm the child no. %d\n", TOS_NODE_ID);
+	  		printf("I'm sending to parent no. %d\n", coupled);
 	  		printf("Reading data from Fake Sensor \n");
-	  		printf("x-coordinate: %d\n", mess->my_data.x);
-	  		printf("y-coordinate: %d\n", mess->my_data.y);
-	  		printf("status: %d\n", mess->my_data.status);
+	  		printf("Read x-coordinate: %d\n", mess->my_data.x);
+	  		printf("Read y-coordinate: %d\n", mess->my_data.y);
+	  		printf("Read status: %d\n", mess->my_data.status);
 	  	
 		}
 	  
