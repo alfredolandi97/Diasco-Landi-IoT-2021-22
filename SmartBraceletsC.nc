@@ -8,7 +8,12 @@
 
 #include "SmartBracelets.h"
 #include "Timer.h"
-#include "printf.h"
+
+#define TOSSIM
+
+#ifndef TOSSIM
+	#include "printf.h"
+#endif
 
 module SmartBraceletsC {
 
@@ -62,11 +67,14 @@ module SmartBraceletsC {
 		  return;
 	 	}
 	 	
-	  	//TOSSIM
-	  	dbg("radio_pack","Preparing the broadcast message...\n");
-	  
-	  	//COOJA
-	  	printf("Preparing the broadcast message...\n");
+	 	#ifdef TOSSIM
+	 		//TOSSIM
+	  		dbg("radio_pack","Preparing the broadcast message...\n");
+	 	#else
+	 		//COOJA
+	  		printf("Preparing the broadcast message...\n");
+	 	#endif
+	  	
 	  	
 	  	mess->my_tos_node_id=tos_node_id;
 	  	mess->my_key=mykey;
@@ -74,19 +82,21 @@ module SmartBraceletsC {
 	  	
 	  	
 	    if(call AMSend.send(AM_BROADCAST_ADDR, &packet,sizeof(my_msg_t)) == SUCCESS){
-	  
-	     //TOSSIM
-	     dbg_clear("radio_pack","Starting broadcasting phase\n");
-	     dbg_clear("radio_pack","my_tos_node_id: %d\n", mess->my_tos_node_id);
-		 dbg_clear("radio_pack","my_key: %llu\n", mess->my_key);
-		 dbg_clear("radio_pack","special_code: %d\n", mess->special_code);
-		 
-		 //COOJA
-		 printf("Starting broadcasting phase\n");
-	     printf("my_tos_node_id: %d\n", mess->my_tos_node_id);
-		 printf("my_key: %llu\n", mess->my_key);
-		 printf("special code: %d\n", mess->special_code);
-		 
+	  		
+	  		#ifdef TOSSIM
+		 		//TOSSIM
+	     		dbg_clear("radio_pack","Starting broadcasting phase\n");
+	     		dbg_clear("radio_pack","my_tos_node_id: %d\n", mess->my_tos_node_id);
+		 		dbg_clear("radio_pack","my_key: %llu\n", mess->my_key);
+		 		dbg_clear("radio_pack","special_code: %d\n", mess->special_code);
+	 		#else
+	 			//COOJA
+		 		printf("Starting broadcasting phase\n");
+	    		printf("my_tos_node_id: %d\n", mess->my_tos_node_id);
+		 		printf("my_key: %llu\n", mess->my_key);
+		 		printf("special code: %d\n", mess->special_code);
+	 		#endif
+	     		 
   		}
   	}
   	
