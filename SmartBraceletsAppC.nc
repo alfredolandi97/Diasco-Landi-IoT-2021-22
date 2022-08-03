@@ -6,13 +6,8 @@
  */
 
 #include "SmartBracelets.h"
-
-#define TOSSIM
-
-#ifndef TOSSIM
-	#define NEW_PRINTF_SEMANTICS
-	#include "printf.h"
-#endif
+#define NEW_PRINTF_SEMANTICS
+#include "printf.h"
 
 configuration SmartBraceletsAppC {}
 
@@ -21,25 +16,20 @@ implementation {
 
   /****** COMPONENTS *****/
   components MainC, SmartBraceletsC as App;
-  //add the other components here
   components new TimerMilliC() as t;
   components new TimerMilliC() as t2;
   components new FakeSensorC();
   components ActiveMessageC;
   components new AMSenderC(AM_MY_MSG);
   components new AMReceiverC(AM_MY_MSG);
-  
-  #ifndef TOSSIM
-  	components SerialPrintfC;
-  	components SerialStartC;
-  #endif
+  components SerialPrintfC;
+  components SerialStartC;
   
 
   /****** INTERFACES *****/
   //Boot interface
   App.Boot -> MainC.Boot;
 
-  /****** Wire the other interfaces down here *****/
   //Send and Receive interfaces
   App.Receive -> AMReceiverC;
   App.AMSend -> AMSenderC;
@@ -59,6 +49,5 @@ implementation {
   
   //Interfaces to communicate
   App.PacketAcknowledgements -> ActiveMessageC;
-
 }
 
