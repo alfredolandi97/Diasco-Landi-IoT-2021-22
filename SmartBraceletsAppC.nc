@@ -6,8 +6,13 @@
  */
 
 #include "SmartBracelets.h"
-#define NEW_PRINTF_SEMANTICS
-#include "printf.h"
+
+#define TOSSIM
+
+#ifndef TOSSIM
+	#define NEW_PRINTF_SEMANTICS
+	#include "printf.h"
+#endif
 
 configuration SmartBraceletsAppC {}
 
@@ -23,8 +28,12 @@ implementation {
   components ActiveMessageC;
   components new AMSenderC(AM_MY_MSG);
   components new AMReceiverC(AM_MY_MSG);
-  components SerialPrintfC;
-  components SerialStartC;
+  
+  #ifndef TOSSIM
+  	components SerialPrintfC;
+  	components SerialStartC;
+  #endif
+  
 
   /****** INTERFACES *****/
   //Boot interface
