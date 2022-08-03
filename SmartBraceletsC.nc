@@ -107,35 +107,43 @@ module SmartBraceletsC {
 	  	}
 	  	
 	  	if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
+	  		#ifdef TOSSIM
 	  		//TOSSIM
 	  		dbg("radio_ack", "Acknowledgements are enabled\n");
-	  		
+	  		#else
 	  		//COOJA
 	  		printf("Acknowledgements are enabled\n");
+	  		#endif
 	  	}else{
+	  		#ifdef TOSSIM
 	  		//TOSSIM
 	  		dbg("radio_ack", "Error in requesting ACKs to other mote\n");
-	  		
+	  		#else
 	  		//COOJA
 	  		printf("Error in requesting ACKs to other mote\n");
+	  		#endif
 	  	}
-	 	 //TOSSIM
+	  	
+	  	#ifdef TOSSIM
+	 	//TOSSIM
 	  	dbg("radio_pack","Preparing the special message...\n");
-	  
+	  	#else
 	  	//COOJA
 	  	printf("Preparing the special message...\n");
+	  	#endif
 	  	
 	  	mess->special_code=paired;
 	  
 	  	if(call AMSend.send(coupled, &packet,sizeof(my_msg_t)) == SUCCESS){
-	  
+	  		#ifdef TOSSIM
 	     	//TOSSIM
 	    	dbg_clear("radio_pack","Starting sending special message\n");
 			dbg_clear("radio_pack","Special code: %d\n", mess->special_code);
-		 
+		 	#else
 		 	//COOJA
 		 	printf("Starting sending special message\n");
 			printf("Special code: %d\n", mess->special_code);
+			#endif
   		}		
   	}
   
@@ -152,12 +160,13 @@ module SmartBraceletsC {
 
   //***************** Boot interface ********************//
   event void Boot.booted() {
-  
+  	#ifdef TOSSIM
   	//TOSSIM
 	dbg("boot","Application booted\n");
-	
+	#else
 	//COOJA
 	printf("Application booted\n");
+	#endif
 	
 	call SplitControl.start();
   }
@@ -167,11 +176,13 @@ module SmartBraceletsC {
   event void SplitControl.startDone(error_t err){
     
     if(err == SUCCESS) {
+    	#ifdef TOSSIM
     	//TOSSIM
     	dbg("radio", "Split Control Start DONE!\n");
-    	
+    	#else
     	//COOJA
     	printf("Split Control Start DONE!\n");
+    	#endif
     	
 		if (TOS_NODE_ID == 1){
 		
@@ -203,12 +214,13 @@ module SmartBraceletsC {
   }
   
   event void SplitControl.stopDone(error_t err){
-  
+  	#ifdef TOSSIM
     //TOSSIM
     dbg("role", "End of execution\n");
-    
+    #else
     //COOJA
     printf("End of execution\n");
+    #endif
   }
 
   //***************** MilliTimer interface ********************//
@@ -235,38 +247,41 @@ module SmartBraceletsC {
 	 * X. Use debug statements showing what's happening (i.e. message fields)
 	 */
 	 if (&packet == buf && err == SUCCESS) {
-	 //TOSSIM
-      dbg("radio_send", "Packet sent\n");
-      
-      //COOJA
+	   #ifdef TOSSIM
+	   //TOSSIM
+       dbg("radio_send", "Packet sent\n");
+       #else
+       //COOJA
        printf("Packet sent\n");
+       #endif
        
     }else{
-    
+      #ifdef TOSSIM
       //TOSSIM
       dbgerror("radio_send", "Send done error!\n");
-      
+      #else
       //COOJA
       printf("Send done error!\n");
+      #endif
     }
      if(paired!=0){
     
     	if(call PacketAcknowledgements.wasAcked(&packet) == TRUE){
-    
+    		#ifdef TOSSIM
     		//TOSSIM
     		dbg("radio_ack", "ACK recieved\n");
-    	
+    		#else
     		//COOJA
     		printf("ACK recieved\n");
-    	
+    		#endif
     	}else{
-    
+    		#ifdef TOSSIM
     		//TOSSIM
     		dbg("radio_ack", "ACK not recieved\n");
-    	
+    		#else
     		//CO0JA
     		printf("ACK not recieved\n");
- 
+ 			#endif
     	}
       }
   	}
@@ -306,39 +321,42 @@ module SmartBraceletsC {
       	}
       	
       }else if(paired==2 && TOS_NODE_ID%2!=0){
-	  		  
+      
+	  		#ifdef TOSSIM 
 	  		//TOSSIM
 	  		dbg("radio_pack","Message Received from the Child at time %s\n", sim_time_string());
       		dbg_clear("radio_pack", "I'm Parent n° %d\n", TOS_NODE_ID);
 	  		dbg_clear("radio_pack", "Received x-coordinate: %d\n", mess->my_data.x);
 	  		dbg_clear("radio_pack", "Received y-coordinate: %d\n", mess->my_data.y);
 	  		dbg_clear("radio_pack", "Received status: %d\n", mess->my_data.status);
-	  		
+	  		#else
 	  		//COOJA
 	  		printf("Message Received from the Child\n");
       		printf("I'm Parent n° %d\n", TOS_NODE_ID);
 	  		printf("Received x-coordinate: %d\n", mess->my_data.x);
 	  		printf("Received y-coordinate: %d\n", mess->my_data.y);
 	  		printf("Received status: %d\n", mess->my_data.status);
+	  		#endif
 	  		
 	  	    if(alerted == FALSE){
-	  	
+	  			#ifdef TOSSIM
 	  		    //TOSSIM
 	  		    dbg("radio_pack","Alerted is False\n");
-      	
+      			#else
 	  		    //COOJA
 	  		    printf("Alerted is FALSE\n");
-	  		
+	  			#endif
 	  		
 	  		    //3 IS FALLING STATE 
 	  		    if(mess->my_data.status == 3){
-	  		
+				   #ifdef TOSSIM	  			
 	  		       //TOSSIM
 	  			   dbg("debug","Falling State Recieved\n");
-	  			
+	  			   #else
 	  			   //COOJA
 	  			   printf("Falling State Recieved\n");
-	  			
+	  			   #endif
+	  			   	
 	  			   call ParentMilliTimer.startPeriodic(60000);
 	  			   last_received_position.x=mess->my_data.x;
 	  			   last_received_position.y=mess->my_data.y;
@@ -347,45 +365,49 @@ module SmartBraceletsC {
 	  			}
 	  			
 	  		}else if(alerted==TRUE){
-	  		
+	  		    #ifdef TOSSIM
 	  			//TOSSIM
 	  			dbg("radio_pack","Alerted is TRUE\n");
       		
-	  		
+	  		    #else
 	  			//COOJA
 	  			printf("Alerted is TRUE\n");
-	  		
+	  			#endif
+	  			
 	  			if (mess->my_data.status==3){
-	  		
+	  				#ifdef TOSSIM
 	  				//TOSSIM
 	  				dbg("debug","Another consecutive Falling state received\n");
 	  				dbg("debug","STOPPING TIMER\n");
-	  			
+	  				#else
 	  				//COOJA
 	  				printf("Another consecutive Falling state received\n");
 	  				printf("STOPPING TIMER\n");
-	  			
+	  				#endif
+	  				
 	  				call ParentMilliTimer.stop();
-	  			
+	  				#ifdef TOSSIM
 	  				//TOSSIM
 	  				dbg("debug","RESTARTING TIMER\n");
-	  			
+	  				#else
 	  				//COOJA
 	  				printf("RESTARTING TIMER \n");
-	  			
+	  				#endif
+	  				
 	  				call ParentMilliTimer.startPeriodic(60000);
 	  				last_received_position.x=mess->my_data.x;
 	  				last_received_position.y=mess->my_data.y;
 	  				last_received_position.status=mess->my_data.status;
 	  			
 				}else{
-			
+					#ifdef TOSSIM
 					//TOSSIM
 					dbg("debug","Update received,NO-MORE EMERGENCY\n");
-				
+					#else
 					//COOJA
 					printf("Update received,NO-MORE EMERGENCY\n");
-				
+					#endif
+					
 					alerted=FALSE;
 					call ParentMilliTimer.stop();
 				}
@@ -395,11 +417,13 @@ module SmartBraceletsC {
       return buf;
     }
     {
+      #ifdef TOSSIM
       //TOSSIM	
       dbgerror("radio_rec", "Receiving error \n");
-      
+      #else
       //COOJA
       printf("Receiving error \n");
+      #endif
       
     }
   }
@@ -421,23 +445,27 @@ module SmartBraceletsC {
 	  mess->my_data = data;
 	  
 	  	if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
-	  
+	  		#ifdef TOSSIM
 	  		//TOSSIM
 	  		dbg("radio_ack", "Acknowledgements are enabled\n");
-	  		
+	  		#else
 	  		//COOJA
 	  		printf("Acknowledgements are enabled\n");
+	  		#endif
+	  		
 	  	}else{
+	  		#ifdef TOSSIM
 	  		//TOSSIM
 	  		dbg("radio_ack", "Error in requesting ACKs to other mote\n");
-	  		
+	  		#else
 	  		//COOJA
 	  		printf("Error in requesting ACKs to other mote\n");
+	  		#endif
 	  	}
 	  
 	  
 	  	if(call AMSend.send(coupled, &packet,sizeof(my_msg_t)) == SUCCESS){  
-	  
+	  		#ifdef TOSSIM
 	  		//TOSSIM
 	  		dbg_clear("radio_pack", "I'm the child no. %d\n", TOS_NODE_ID);
 	  		dbg_clear("radio_pack", "I'm sending to parent no. %d\n", coupled);
@@ -445,7 +473,7 @@ module SmartBraceletsC {
 	  		dbg_clear("radio_pack", "\t\t read x-coordinate: %d\n", mess->my_data.x);
 	  		dbg_clear("radio_pack", "\t\t read y-coordinate: %d\n", mess->my_data.y);
 	  		dbg_clear("radio_pack", "\t\t read status: %d\n", mess->my_data.status);
-	  	
+	  		#else
 	  		//COOJA
 	  		printf("I'm the child no. %d\n", TOS_NODE_ID);
 	  		printf("I'm sending to parent no. %d\n", coupled);
@@ -453,7 +481,7 @@ module SmartBraceletsC {
 	  		printf("Read x-coordinate: %d\n", mess->my_data.x);
 	  		printf("Read y-coordinate: %d\n", mess->my_data.y);
 	  		printf("Read status: %d\n", mess->my_data.status);
-	  	
+	  		#endif
 		}
 	  
 	  
@@ -463,19 +491,21 @@ module SmartBraceletsC {
 	*/
 	event void ParentMilliTimer.fired(){
 	
+		#ifdef TOSSIM
 		//TOSSIM
 		dbg("radio_pack","No more response received after the last FALLING state... \n");
       	dbg("radio_pack", ">>>Last position received: \n");
 	  	dbg_clear("radio_pack", "\t\t x-coordinate: %d\n", last_received_position.x);
 	  	dbg_clear("radio_pack", "\t\t y-coordinate: %d\n", last_received_position.y);
 	    dbg_clear("radio_pack", "\t\t MISSING ALARM \n");
-	    
+	    #else
 	    //COOJA
 	    printf("No more response received after the last FALLING state...\n");
       	printf(">>>Last position received: \n");
 	  	printf("x-coordinate: %d\n", last_received_position.x);
 	  	printf("y-coordinate: %d\n", last_received_position.y);
 	    printf("MISSING ALARM \n");
+	    #endif
 	    
 	  	call ParentMilliTimer.stop();
 	}
