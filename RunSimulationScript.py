@@ -66,6 +66,18 @@ time2 = 0*t.ticksPerSecond();
 node2.bootAtTime(time2);
 print ">>>Will boot at time", time2/t.ticksPerSecond(), "[sec]";
 
+print "Creating node 3...";
+node3 =t.getNode(3);
+time3 = 0*t.ticksPerSecond(); #instant at which each node should be turned on
+node3.bootAtTime(time3);
+print ">>>Will boot at time",  time3/t.ticksPerSecond(), "[sec]";
+
+print "Creating node 4...";
+node4 = t.getNode(4);
+time4 = 0*t.ticksPerSecond();
+node4.bootAtTime(time4);
+print ">>>Will boot at time", time4/t.ticksPerSecond(), "[sec]";
+
 
 print "Creating radio channels..."
 f = open(topofile, "r");
@@ -96,17 +108,17 @@ for line in lines:
             mid_compl = 0;
             sys.stdout.write ("#")
             sys.stdout.flush()
-        for i in range(1, 3):
+        for i in range(1, 5):
             t.getNode(i).addNoiseTraceReading(val)
 print "Done!";
 
-for i in range(1, 3):
+for i in range(1, 5):
     print ">>>Creating noise model for node:",i;
     t.getNode(i).createNoiseModel()
 
 print "Start simulation with TOSSIM! \n\n\n";
 
-for i in range(0,5000):
+for i in range(0,60000):
 	t.runNextEvent()
 	
 print "\n\n\nSimulation finished!";
