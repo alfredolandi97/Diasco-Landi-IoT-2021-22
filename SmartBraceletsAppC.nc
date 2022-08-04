@@ -6,8 +6,18 @@
  */
 
 #include "SmartBracelets.h"
+<<<<<<< Updated upstream
 #define NEW_PRINTF_SEMANTICS
 #include "printf.h"
+=======
+
+//#define TOSSIM
+
+#ifndef TOSSIM
+	#define NEW_PRINTF_SEMANTICS
+	#include "printf.h"
+#endif
+>>>>>>> Stashed changes
 
 configuration SmartBraceletsAppC {}
 

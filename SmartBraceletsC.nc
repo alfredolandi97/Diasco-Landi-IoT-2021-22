@@ -9,7 +9,15 @@
 #include "SmartBracelets.h"
 #include "Timer.h"
 
+<<<<<<< Updated upstream
 #include "printf.h"
+=======
+//#define TOSSIM
+
+#ifndef TOSSIM
+	#include "printf.h"
+#endif
+>>>>>>> Stashed changes
 
 module SmartBraceletsC {
 
