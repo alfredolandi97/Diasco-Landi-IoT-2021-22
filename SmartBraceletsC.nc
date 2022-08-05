@@ -42,8 +42,9 @@ module SmartBraceletsC {
    * 2-> Paired phase
   */
   uint8_t paired=0;
-  uint8_t coupled;
-  bool mySpecialMessageisSent=FALSE;
+  uint8_t coupled=0;
+  bool sentSpecialMessage=FALSE;
+  bool parentReadyforOperationMode=FALSE;
   bool alerted=FALSE;
   my_data_t last_received_position;
   uint8_t type;
@@ -122,7 +123,7 @@ module SmartBraceletsC {
 	  	//COOJA
 	  	printf("Preparing the special message...\n");
 	  	
-	  	mess->special_code=paired;
+	  	mess->special_code=1;
 	  
 	  	if(call AMSend.send(coupled, &packet,sizeof(my_msg_t)) == SUCCESS){
 	     	//TOSSIM
@@ -244,13 +245,27 @@ module SmartBraceletsC {
       //COOJA
       printf("Send done error!\n");
     }
-     if(paired!=0){
-    	if(call PacketAcknowledgements.wasAcked(&packet) == TRUE){
+     if(paired==0){
+     	printf("paired = 0, sent a Broadcast Message\n");
+     	if(coupled!=0){
+     		printf("I already know my coupled device, setting paired = 1 and sending a special message\n");
+      		paired=1;
+      		sendSpecialMessage();
+      	}
+      }else{
+      	if(call PacketAcknowledgements.wasAcked(&packet) == TRUE){
     		//TOSSIM
     		dbg("radio_ack", "ACK recieved\n");
     		
     		//COOJA
     		printf("ACK recieved\n");
+    		if(paired==1){
+    			printf("paired = 1 in sendDone, I sent my special message\n");
+    			sendSpecialMessage();
+    			sentSpecialMessage=TRUE;
+    		}else if(paired==2 && TOS_NODE_ID%2!=0){
+    			parentReadyforOperationMode = TRUE;
+    		}
     	}else{
     		//TOSSIM
     		dbg("radio_ack", "ACK not recieved\n");
@@ -273,22 +288,28 @@ module SmartBraceletsC {
       my_msg_t* mess = (my_msg_t*)payload;
       
       if(paired==0){
+      	//Cooja
+      	printf("Paired = 0, receiving a broadcast message\n");
       	if(mess->my_key == mykey){
-			coupled= mess-> my_tos_node_id;
-			paired=1;
-			sendSpecialMessage();	
-      	}else{
-      		sendBroadcastMessage();
+			coupled= mess-> my_tos_node_id;	
+			printf("The broadcast message contains my same key\n");
       	}
+      	sendBroadcastMessage();
+      	printf("Sending again a Broadcast message\n");
       
       }else if(paired==1){
-      	if(mess->special_code==1){
+      	printf("Paired = 1, receiving a Special Message\n");
+      	if(mess->special_code==1 && sentSpecialMessage==TRUE){
+      		printf("I both sent and received a Special Message, setting paired = 2\n");
       		paired=2;
       		if(TOS_NODE_ID%2==0){
+    			printf("Starting ChildMilliTimer for mote %d\n", TOS_NODE_ID);	
       			call ChildMilliTimer.startPeriodic( 10000 );
-      		}
-      	}
-      }else if(paired==2 && TOS_NODE_ID%2!=0){
+    		}
+      	}else{
+    		sendSpecialMessage();
+    	}
+      }else if(paired==2 && TOS_NODE_ID%2!=0 && parentReadyforOperationMode==TRUE){
 	  		//TOSSIM
 	  		dbg("radio_pack","Message Received from the Child at time %s\n", sim_time_string());
       		dbg_clear("radio_pack", "I'm Parent n° %d\n", TOS_NODE_ID);
