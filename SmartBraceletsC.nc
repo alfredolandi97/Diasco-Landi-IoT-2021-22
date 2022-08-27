@@ -55,9 +55,10 @@ module SmartBraceletsC {
   
   //****************** Task send Broadcast Message *****************//
   void sendBroadcastMessage(){
-  		/*TO WRITE
-  		*
-  		*/
+  		/*sendBroadcastMessage is called at the very beginning of our execution,
+  		 *when every single mote has to discover which other mote owns the same key
+  		 *as itself
+  		 */
   		my_msg_t *mess = (my_msg_t*)(call Packet.getPayload(&packet, sizeof(my_msg_t)));
 	 	if (mess == NULL) {
 		  return;
@@ -93,9 +94,9 @@ module SmartBraceletsC {
   	
   	//****************** Task send Special Message *****************//
   	void sendSpecialMessage(){
-  		/*TO WRITE
-  		*
-  		*/
+  		/*After a mote has found the other mote which has its own key, it has to send a special message,
+  		 *1 in our convention, and we use this method to allow this behavior
+  		 */
   		my_msg_t *mess = (my_msg_t*)(call Packet.getPayload(&packet, sizeof(my_msg_t)));
 	  	if (mess == NULL) {
 			return;
@@ -160,8 +161,10 @@ module SmartBraceletsC {
 
   //***************** SplitControl interface ********************//
   event void SplitControl.startDone(error_t err){
-  /*WRITE HERE THE MODULE DESCRIPTION
-  */ 
+  /*According to different TOS_NODE_ID assign preloaded key to motes, the rules are the following:
+   *the two couples are TOS_NODE_ID (1, 2) and (3, 4), children are always identified by an even
+   *TOS_NODE_ID (in our simulation 2 and 4)
+   */ 
     if(err == SUCCESS) {
     	//TOSSIM
     	dbg("radio", "Split Control Start DONE!\n");
@@ -229,7 +232,11 @@ module SmartBraceletsC {
 
   //********************* AMSend interface ****************//
   event void AMSend.sendDone(message_t* buf,error_t err) {
-	/* This event is triggered when a message is sent 
+	/*This event is triggered when a message is sent.
+	 *Every time a message is sent in a specific pairing phase and its own ack is received,
+	 *we allow the program to go to the next step of the pairing execution, till we reach
+	 *paired equal to 2, which represents the step where the connection is perfectly set up and
+	 *the mote has to receive only coordinates or ACKs according to its type (parent or child)
 	 */
 	 if (&packet == buf && err == SUCCESS) {
 	   //TOSSIM
@@ -281,7 +288,11 @@ module SmartBraceletsC {
   //***************************** Receive interface *****************//
   event message_t* Receive.receive(message_t* buf,void* payload, uint8_t len) {
 	/* This event is triggered when a message is received.
-	 * TO COMPLETE 
+	 * When paired is set to 0 we need to receive a broadcast message, then when paired
+	 * becomes 1 we expect a special message, which in our convention is a 1, finally
+	 * paired equal to 2 shows that we are able to receive coordinates and statuses,
+	 * if we are in a parent execution, or ACKs from the parent if the code is running
+	 * in a child
 	 */
 	if (len != sizeof(my_msg_t)) {
 		return buf;
