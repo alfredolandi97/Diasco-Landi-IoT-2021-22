@@ -278,6 +278,8 @@ module SmartBraceletsC {
     		//CO0JA
     		printf("ACK not recieved\n");
     		if(paired==1){
+    			printf("Sending again Broadcast Message\n");
+    			sendBroadcastMessage();
     			printf("Sending again Special Message\n");
     			sendSpecialMessage();
     		}
