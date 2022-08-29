@@ -258,6 +258,8 @@ module SmartBraceletsC {
      		printf("I already know my coupled device, setting paired = 1 and sending a special message\n");
       		paired=1;
       		sendSpecialMessage();
+      	}else{
+      		sendBroadcastMessage();
       	}
       }else{
       	if(call PacketAcknowledgements.wasAcked(&packet) == TRUE){
@@ -306,25 +308,29 @@ module SmartBraceletsC {
       	//Cooja
       	printf("Paired = 0, receiving a broadcast message\n");
       	if(mess->my_key == mykey){
-			coupled= mess-> my_tos_node_id;	
+			coupled= mess-> my_tos_node_id;
+			mykey=0;
 			printf("The broadcast message contains my same key\n");
-      	}
-      	sendBroadcastMessage();
-      	printf("Sending again a Broadcast message\n");
-      
+      	}else{
+      		sendBroadcastMessage();
+      		printf("Sending again a Broadcast message\n");
+      	}      
       }else if(paired==1){
       	printf("Paired = 1, receiving a Special Message\n");
-      	if(mess->special_code==1 && sentSpecialMessage==TRUE){
-      		printf("I both sent and received a Special Message, setting paired = 2\n");
-      		paired=2;
-      		if(TOS_NODE_ID%2==0){
+      	if(mess->my_key==0){
+      		if(mess->special_code==1 && sentSpecialMessage==TRUE){
+      		 printf("I both sent and received a Special Message, setting paired = 2\n");
+      		 paired=2;
+      		 if(TOS_NODE_ID%2==0){
     			printf("Starting ChildMilliTimer for mote %d\n", TOS_NODE_ID);	
       			call ChildMilliTimer.startPeriodic( 10000 );
-    		}else{
-    		}
-      	}else{
+    		 }
+      	   }else{
     		sendSpecialMessage();
-    	}
+    	   }
+      	}else{
+      		sendBroadcastMessage();
+      	}
       }else if(paired==2){
       		if(TOS_NODE_ID%2!=0 && mess->my_tos_node_id==coupled && mess->my_data_not_yet_readable==FALSE){
       			//TOSSIM
