@@ -59,17 +59,13 @@ module SmartBraceletsC {
   		 *when every single mote has to discover which other mote owns the same key
   		 *as itself
   		 */
+  		 
   		my_msg_t *mess = (my_msg_t*)(call Packet.getPayload(&packet, sizeof(my_msg_t)));
 	 	if (mess == NULL) {
 		  return;
 	 	}
 	 	
-	 	//TOSSIM
-	  	dbg("radio_pack","Preparing the broadcast message...\n");
-	  	
-	 	//COOJA
 	  	printf("Preparing the broadcast message...\n");
-	  	
 	  	
 	  	mess->my_tos_node_id=TOS_NODE_ID;
 	  	mess->my_key=mykey;
@@ -77,7 +73,7 @@ module SmartBraceletsC {
 	  	
 	  	
 	    if(call AMSend.send(AM_BROADCAST_ADDR, &packet,sizeof(my_msg_t)) == SUCCESS){
-	 		//COOJA
+	 		
 		 	printf(">>>Sending broadcast message...\n");
 	    	printf("my_tos_node_id: %d\n", mess->my_tos_node_id);
 		 	printf("my_key: %llu\n", mess->my_key);   		 
@@ -89,27 +85,27 @@ module SmartBraceletsC {
   		/*After a mote has found the other mote which has its own key, it has to send a special message,
   		 *1 in our convention, and we use this method to allow this behavior
   		 */
+  		 
   		my_msg_t *mess = (my_msg_t*)(call Packet.getPayload(&packet, sizeof(my_msg_t)));
 	  	if (mess == NULL) {
 			return;
 	  	}
 	  	
 	  	if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){
-	  		//COOJA
+	  		
 	  		printf("Acknowledgements are enabled\n");
 	  	}else{
-	  		//COOJA
+	  		
 	  		printf("Error in requesting ACKs to other mote\n");
 	  	}
 	  	
-	  	//COOJA
 	  	printf("Preparing the special message...\n");
 	  	
 	  	mess->special_code=1;
 	  	mess->my_data_not_yet_readable=TRUE;
 	  
 	  	if(call AMSend.send(coupled, &packet,sizeof(my_msg_t)) == SUCCESS){
-		 	//COOJA
+		 	
 		 	printf(">>>Sending special message...\n");
 			printf("Special code: %d\n", mess->special_code);
   		}		
@@ -122,12 +118,13 @@ module SmartBraceletsC {
   	 * `call Read.read()` reads from the fake sensor.
   	 * When the reading is done it raises the event read done.
   	 */
+  	 
 	call Read.read();
   }
 
   //***************** Boot interface ********************//
   event void Boot.booted() {
-	//COOJA
+	
 	printf("Application booted\n");
 	
 	call SplitControl.start();
@@ -138,28 +135,29 @@ module SmartBraceletsC {
   /*According to different TOS_NODE_ID assign preloaded key to motes, the rules are the following:
    *the two couples are TOS_NODE_ID (1, 2) and (3, 4), children are always identified by an even
    *TOS_NODE_ID (in our simulation 2 and 4)
-   */ 
+   */
+    
     if(err == SUCCESS) {
-    	//COOJA
+    	
     	printf("Split Control Start DONE!\n");
     	
 		if (TOS_NODE_ID == 1){
-			//COOJA
+			
 		 	printf("STARTING PARENT no.%d\n", TOS_NODE_ID);
 		 	mykey=17263987259413674582;
 		 	
   		}else if(TOS_NODE_ID == 2){  			
-  			//COOJA
+  			
   			printf("STARTING CHILD no.%d\n", TOS_NODE_ID);
   			mykey=17263987259413674582;
   			
   		}else if(TOS_NODE_ID == 3){			
-			//COOJA
+			
 		 	printf("STARTING PARENT no.%d\n", TOS_NODE_ID);
   			mykey=13945678216985476321;
   			
   		}else if(TOS_NODE_ID == 4){
-  			//COOJA
+  			
   			printf("STARTING CHILD no.%d\n", TOS_NODE_ID);
 			mykey=13945678216985476321;
 			
@@ -167,13 +165,13 @@ module SmartBraceletsC {
   		sendBroadcastMessage();
   		
     }else{
-	//dbg for error
+	
 	call SplitControl.start();
     }
   }
   
   event void SplitControl.stopDone(error_t err){
-    //COOJA
+    
     printf("End of execution\n");
   }
 
@@ -182,6 +180,7 @@ module SmartBraceletsC {
 	/* This event is triggered every time the timer fires.
 	 * When the timer fires, we send a childResp with coordinates and status of child's bracelet
 	 */
+	 
 	 sendChildResp();
   }
   
@@ -195,11 +194,11 @@ module SmartBraceletsC {
 	 *the mote has to receive only coordinates or ACKs according to its type (parent or child)
 	 */
 	 if (&packet == buf && err == SUCCESS) {
-       //COOJA
-       printf("Packet sent\n");
        
+       printf("Packet sent\n");
+        
     }else{      
-      //COOJA
+      
       printf("Send done error!\n");
     }
      if(paired==0){
@@ -210,14 +209,14 @@ module SmartBraceletsC {
       	}
       }else{
       	if(call PacketAcknowledgements.wasAcked(&packet) == TRUE){
-    		//COOJA
+    		
     		printf("ACK recieved\n");
     		if(paired==1){
     			sendSpecialMessage();
     			sentSpecialMessage=TRUE;
     		}
     	}else{
-    		//CO0JA
+    		
     		printf("ACK not recieved\n");
     		if(paired==1){
     			sendSpecialMessage();
@@ -235,6 +234,7 @@ module SmartBraceletsC {
 	 * if we are in a parent execution, or ACKs from the parent if the code is running
 	 * in a child
 	 */
+	 
 	if (len != sizeof(my_msg_t)) {
 		return buf;
 	}
@@ -276,16 +276,12 @@ module SmartBraceletsC {
 	  			last_received_position.x=mess->my_data.x;
 	  			last_received_position.y=mess->my_data.y;
 	  	    	
-      		}
-	  }
-	  	
-      return buf;
-    }
+      		 }
+	  	}
+	  		return buf;
+    	}
     {
-      //TOSSIM	
-      dbgerror("radio_rec", "Receiving error \n");
-      
-      //COOJA
+    
       printf("Receiving error \n");
     }
   }
@@ -294,6 +290,7 @@ module SmartBraceletsC {
   event void Read.readDone(error_t result, my_data_t data) {
 	/* This event is triggered when the fake sensor finishes to read (after a Read.read())
 	 */
+	 
 	 my_msg_t* mess = (my_msg_t*)(call Packet.getPayload(&packet, sizeof(my_msg_t)));
 	  if (mess == NULL) {
 		return;
@@ -303,16 +300,16 @@ module SmartBraceletsC {
 	  mess->my_data_not_yet_readable = FALSE;
 	  
 	  	if(call PacketAcknowledgements.requestAck(&packet)==SUCCESS){	  		
-	  		//COOJA
+	  		
 	  		printf("Acknowledgements are enabled\n");
 	  	}else{
-	  		//COOJA
+	  		
 	  		printf("Error in requesting ACKs to other mote\n");
 	  	}
 	  
 	  
 	  	if(call AMSend.send(coupled, &packet,sizeof(my_msg_t)) == SUCCESS){	
-	  		//COOJA
+	  		
 	  		printf(">>>Reading data from Fake Sensor...\n");
 	  		printf("(x, y) -> (%d, %d)\n", mess->my_data.x, mess->my_data.y);
 	  		if(mess->my_data.status == 0){
@@ -334,7 +331,7 @@ module SmartBraceletsC {
 		/*  This timer is fired when the child doesn't send any response to the Parent after 60 seconds from the last 
 		*  falling state received. 
 		*/
-	    //COOJA
+	    
 	    printf("No more INFO messages received after 1 minute...\n");
       	printf(">>>Last position received: \n");
 	  	printf("(x, y) -> (%d, %d)\n", last_received_position.x, last_received_position.y);
