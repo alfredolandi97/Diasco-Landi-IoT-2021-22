@@ -44,7 +44,6 @@ module SmartBraceletsC {
   uint8_t paired=0;
   uint8_t coupled=0;
   bool sentSpecialMessage=FALSE;
-  bool alerted=FALSE;
   my_data_t last_received_position;
   uint8_t type;
 
@@ -270,6 +269,7 @@ module SmartBraceletsC {
 	  				printf("Status: RUNNING\n");
 	  			}else if(mess->my_data.status == 3){
 	  				printf("Status: FALLING\n");
+	  				printf("FALLING ALARM\n");
 	  			}
 	  			
 	  			call ParentMilliTimer.startOneShot(60000);
