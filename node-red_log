@@ -1,0 +1,422 @@
+Application booted
+Split Control Start DONE!
+STARTING CHILD no.2
+Preparing the broadcast message...
+>>>Sending broadcast message...
+my_tos_node_id: 2
+my_key: 17263987259413674582
+Packet sent
+Application booted
+Split Control Start DONE!
+STARTING CHILD no.4
+Preparing the broadcast message...
+>>>Sending broadcast message...
+my_tos_node_id: 4
+Preparing the broadcast message...
+>>>Sending broadcast message...
+my_tos_node_id: 2
+Application booted
+my_key: 13945678216985476321
+Packet sent
+Preparing the broadcast message...
+>>>Sending broadcast message...
+Split Control Start DONE!
+STARTING PARENT no.1
+my_tos_node_id: 4
+Preparing the broadcast message...
+>>>Sending broadcast message...
+my_tos_node_id: 1
+my_key: 17263987259413674582
+Packet sent
+Preparing the broadcast message...
+>>>Sending broadcast message...
+my_tos_node_id: 2
+my_key: 13945678216985476321
+Packet sent
+Preparing the broadcast message...
+my_key: 17263987259413674582
+Packet sent
+>>>Sending broadcast message...
+Preparing the broadcast message...
+my_tos_node_id: 4
+>>>Sending broadcast message...
+my_tos_node_id: 1
+my_key: 17263987259413674582
+Packet sent
+Broadcasting phase completed
+Acknowledgements are enabled
+Preparing the special message...
+>>>Sending special message...
+Special code: 1
+Acknowledgements are enabled
+Preparing the special message...
+Acknowledgements are enabled
+Preparing the special message...
+my_key: 13945678216985476321
+Acknowledgements are enabled
+Preparing the special message...
+Packet sent
+Packet sent
+ACK not recieved
+my_key: 17263987259413674582
+Preparing the broadcast message...
+Packet sent
+Acknowledgements are enabled
+Preparing the special message...
+Preparing the broadcast message...
+>>>Sending broadcast message...
+>>>Sending special message...
+>>>Sending broadcast message...
+my_tos_node_id: 4
+Special code: 1
+my_tos_node_id: 1
+Acknowledgements are enabled
+Preparing the special message...
+Acknowledgements are enabled
+Preparing the special message...
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+Preparing the special message...
+>>>Sending special message...
+my_key: 13945678216985476321
+Special code: 1
+Packet sent
+my_key: 17263987259413674582
+Preparing the broadcast message...
+Packet sent
+Broadcasting phase completed
+>>>Sending broadcast message...
+Acknowledgements are enabled
+my_tos_node_id: 4
+Preparing the special message...
+>>>Sending special message...
+Packet sent
+ACK not recieved
+Special code: 1
+Acknowledgements are enabled
+Acknowledgements are enabled
+Preparing the special message...
+Preparing the special message...
+Acknowledgements are enabled
+Preparing the special message...
+>>>Sending special message...
+Special code: 1
+Acknowledgements are enabled
+Acknowledgements are enabled
+Preparing the special message...
+Preparing the special message...
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+Acknowledgements are enabled
+Preparing the special message...
+Preparing the special message...
+>>>Sending special message...
+Special code: 1
+my_key: 13945678216985476321
+Acknowledgements are enabled
+Preparing the special message...
+Packet sent
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+Preparing the special message...
+Preparing the broadcast message...
+>>>Sending broadcast message...
+my_tos_node_id: 4
+>>>Sending special message...
+Special code: 1
+Acknowledgements are enabled
+Preparing the special message...
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+Packet sent
+Preparing the special message...
+ACK recieved
+Acknowledgements are enabled
+>>>Sending special message...
+Preparing the special message...
+Special code: 1
+Acknowledgements are enabled
+>>>Sending special message...
+Preparing the special message...
+Special code: 1
+Packet sent
+Acknowledgements are enabled
+ACK recieved
+Acknowledgements are enabled
+Preparing the special message...
+Preparing the special message...
+Packet sent
+my_key: 13945678216985476321
+Packet sent
+>>>Sending special message...
+ACK recieved
+Special code: 1
+Acknowledgements are enabled
+Special message phase completed
+Preparing the special message...
+Starting ChildMilliTimer for mote 2
+Packet sent
+>>>Sending special message...
+Special code: 1
+ACK recieved
+Special message phase completed
+Packet sent
+ACK recieved
+Application booted
+Split Control Start DONE!
+STARTING PARENT no.3
+Preparing the broadcast message...
+>>>Sending broadcast message...
+my_tos_node_id: 3
+Preparing the broadcast message...
+>>>Sending broadcast message...
+my_tos_node_id: 4
+my_key: 13945678216985476321
+Packet sent
+Preparing the broadcast message...
+>>>Sending broadcast message...
+my_tos_node_id: 3
+my_key: 13945678216985476321
+Packet sent
+Broadcasting phase completed
+Acknowledgements are enabled
+Preparing the special message...
+>>>Sending special message...
+Special code: 1
+Acknowledgements are enabled
+Preparing the special message...
+my_key: 13945678216985476321
+Packet sent
+Packet sent
+ACK recieved
+Broadcasting phase completed
+Acknowledgements are enabled
+Acknowledgements are enabled
+Preparing the special message...
+Preparing the special message...
+>>>Sending special message...
+>>>Sending special message...
+Special code: 1
+Special code: 1
+Acknowledgements are enabled
+Preparing the special message...
+Packet sent
+ACK recieved
+Acknowledgements are enabled
+Special message phase completed
+Starting ChildMilliTimer for mote 4
+Preparing the special message...
+>>>Sending special message...
+Special code: 1
+Packet sent
+ACK recieved
+Special message phase completed
+Packet sent
+ACK recieved
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (463, 142)
+Status: RUNNING
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (101, 52)
+Status: FALLING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (101, 52)
+Status: FALLING
+FALLING ALARM
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (424, 438)
+Status: STANDING
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (537, 283)
+Status: RUNNING
+>>>INFO message received from child mote:
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (463, 142)
+(x, y) -> (537, 283)
+Status: RUNNING
+Status: RUNNING
+>>>INFO message received from child mote:
+(x, y) -> (424, 438)
+Status: STANDING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (563, 354)
+Status: WALKING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (563, 354)
+Status: WALKING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (611, 468)
+Status: RUNNING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (611, 468)
+Status: RUNNING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (412, 386)
+Status: STANDING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (412, 386)
+Status: STANDING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (345, 54)
+Status: WALKING
+>>>INFO message received from child mote:
+(x, y) -> (345, 54)
+Status: WALKING
+Packet sent
+ACK recieved
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (556, 262)
+Status: RUNNING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (556, 262)
+Status: RUNNING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (632, 345)
+Status: STANDING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (632, 345)
+Status: STANDING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (76, 117)
+Status: WALKING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (76, 117)
+Status: WALKING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (429, 586)
+Status: RUNNING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (429, 586)
+Status: RUNNING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (483, 590)
+Status: RUNNING
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (370, 57)
+Status: RUNNING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (370, 57)
+Status: RUNNING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (165, 596)
+Status: RUNNING
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (445, 537)
+Status: RUNNING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (445, 537)
+Status: RUNNING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (584, 578)
+Status: STANDING
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (21, 272)
+Status: RUNNING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (21, 272)
+Status: RUNNING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (163, 314)
+Status: WALKING
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (330, 375)
+Status: STANDING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (330, 375)
+Status: STANDING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (618, 116)
+Status: STANDING
+Packet sent
+ACK not recieved
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (638, 353)
+Status: STANDING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (638, 353)
+Status: STANDING
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (212, 396)
+Status: WALKING
+No more INFO messages received after 1 minute...
+Packet sent
+>>>Last position received: 
+ACK not recieved
+(x, y) -> (76, 117)
+MISSING ALARM
+Acknowledgements are enabled
+>>>Reading data from Fake Sensor...
+(x, y) -> (429, 563)
+Status: STANDING
+Packet sent
+ACK recieved
+>>>INFO message received from child mote:
+(x, y) -> (429, 563)
+Status: STANDING

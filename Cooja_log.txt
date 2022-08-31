@@ -1,0 +1,422 @@
+00:04.320	ID:2	Application booted
+00:04.324	ID:2	Split Control Start DONE!
+00:04.325	ID:2	STARTING CHILD no.2
+00:04.326	ID:2	Preparing the broadcast message...
+00:04.329	ID:2	>>>Sending broadcast message...
+00:04.330	ID:2	my_tos_node_id: 2
+00:04.354	ID:2	my_key: 17263987259413674582
+00:04.354	ID:2	Packet sent
+00:04.433	ID:4	Application booted
+00:04.436	ID:4	Split Control Start DONE!
+00:04.437	ID:4	STARTING CHILD no.4
+00:04.439	ID:4	Preparing the broadcast message...
+00:04.441	ID:4	>>>Sending broadcast message...
+00:04.442	ID:4	my_tos_node_id: 4
+00:04.451	ID:2	Preparing the broadcast message...
+00:04.454	ID:2	>>>Sending broadcast message...
+00:04.455	ID:2	my_tos_node_id: 2
+00:04.466	ID:1	Application booted
+00:04.467	ID:4	my_key: 13945678216985476321
+00:04.468	ID:4	Packet sent
+00:04.469	ID:4	Preparing the broadcast message...
+00:04.470	ID:1	Split Control Start DONE!
+00:04.471	ID:1	STARTING PARENT no.1
+00:04.472	ID:4	>>>Sending broadcast message...
+00:04.472	ID:1	Preparing the broadcast message...
+00:04.473	ID:4	my_tos_node_id: 4
+00:04.475	ID:1	>>>Sending broadcast message...
+00:04.476	ID:1	my_tos_node_id: 1
+00:04.478	ID:2	my_key: 17263987259413674582
+00:04.479	ID:2	Packet sent
+00:04.483	ID:2	Preparing the broadcast message...
+00:04.485	ID:2	>>>Sending broadcast message...
+00:04.486	ID:2	my_tos_node_id: 2
+00:04.497	ID:4	my_key: 13945678216985476321
+00:04.499	ID:4	Packet sent
+00:04.500	ID:4	Preparing the broadcast message...
+00:04.501	ID:1	my_key: 17263987259413674582
+00:04.502	ID:1	Packet sent
+00:04.503	ID:4	>>>Sending broadcast message...
+00:04.503	ID:1	Preparing the broadcast message...
+00:04.504	ID:4	my_tos_node_id: 4
+00:04.506	ID:1	>>>Sending broadcast message...
+00:04.507	ID:1	my_tos_node_id: 1
+00:04.510	ID:2	my_key: 17263987259413674582
+00:04.512	ID:2	Packet sent
+00:04.513	ID:2	Broadcasting phase completed
+00:04.514	ID:2	Acknowledgements are enabled
+00:04.515	ID:2	Preparing the special message...
+00:04.518	ID:2	>>>Sending special message...
+00:04.519	ID:2	Special code: 1
+00:04.521	ID:2	Acknowledgements are enabled
+00:04.522	ID:2	Preparing the special message...
+00:04.524	ID:2	Acknowledgements are enabled
+00:04.525	ID:2	Preparing the special message...
+00:04.528	ID:4	my_key: 13945678216985476321
+00:04.528	ID:2	Acknowledgements are enabled
+00:04.529	ID:2	Preparing the special message...
+00:04.529	ID:4	Packet sent
+00:04.530	ID:2	Packet sent
+00:04.530	ID:2	ACK not recieved
+00:04.531	ID:1	my_key: 17263987259413674582
+00:04.531	ID:4	Preparing the broadcast message...
+00:04.531	ID:2	Acknowledgements are enabled
+00:04.532	ID:1	Packet sent
+00:04.532	ID:2	Preparing the special message...
+00:04.533	ID:4	>>>Sending broadcast message...
+00:04.534	ID:1	Preparing the broadcast message...
+00:04.534	ID:4	my_tos_node_id: 4
+00:04.535	ID:2	>>>Sending special message...
+00:04.536	ID:2	Special code: 1
+00:04.537	ID:1	>>>Sending broadcast message...
+00:04.538	ID:1	my_tos_node_id: 1
+00:04.540	ID:2	Acknowledgements are enabled
+00:04.542	ID:2	Preparing the special message...
+00:04.545	ID:2	Acknowledgements are enabled
+00:04.546	ID:2	Preparing the special message...
+00:04.553	ID:2	Packet sent
+00:04.554	ID:2	ACK not recieved
+00:04.555	ID:2	Acknowledgements are enabled
+00:04.556	ID:2	Preparing the special message...
+00:04.558	ID:2	>>>Sending special message...
+00:04.559	ID:4	my_key: 13945678216985476321
+00:04.559	ID:2	Special code: 1
+00:04.560	ID:4	Packet sent
+00:04.561	ID:1	my_key: 17263987259413674582
+00:04.562	ID:4	Preparing the broadcast message...
+00:04.563	ID:1	Packet sent
+00:04.564	ID:1	Broadcasting phase completed
+00:04.565	ID:4	>>>Sending broadcast message...
+00:04.565	ID:1	Acknowledgements are enabled
+00:04.565	ID:4	my_tos_node_id: 4
+00:04.566	ID:1	Preparing the special message...
+00:04.569	ID:1	>>>Sending special message...
+00:04.570	ID:2	Packet sent
+00:04.570	ID:2	ACK not recieved
+00:04.570	ID:1	Special code: 1
+00:04.572	ID:1	Acknowledgements are enabled
+00:04.573	ID:2	Acknowledgements are enabled
+00:04.573	ID:1	Preparing the special message...
+00:04.574	ID:2	Preparing the special message...
+00:04.575	ID:1	Acknowledgements are enabled
+00:04.577	ID:1	Preparing the special message...
+00:04.577	ID:2	>>>Sending special message...
+00:04.578	ID:2	Special code: 1
+00:04.579	ID:2	Acknowledgements are enabled
+00:04.579	ID:1	Acknowledgements are enabled
+00:04.580	ID:2	Preparing the special message...
+00:04.580	ID:1	Preparing the special message...
+00:04.582	ID:1	Packet sent
+00:04.583	ID:1	ACK not recieved
+00:04.583	ID:2	Acknowledgements are enabled
+00:04.584	ID:1	Acknowledgements are enabled
+00:04.585	ID:2	Preparing the special message...
+00:04.585	ID:1	Preparing the special message...
+00:04.588	ID:1	>>>Sending special message...
+00:04.588	ID:1	Special code: 1
+00:04.589	ID:4	my_key: 13945678216985476321
+00:04.590	ID:1	Acknowledgements are enabled
+00:04.591	ID:1	Preparing the special message...
+00:04.591	ID:4	Packet sent
+00:04.592	ID:2	Packet sent
+00:04.592	ID:2	ACK not recieved
+00:04.593	ID:2	Acknowledgements are enabled
+00:04.594	ID:4	Preparing the broadcast message...
+00:04.595	ID:2	Preparing the special message...
+00:04.596	ID:4	>>>Sending broadcast message...
+00:04.597	ID:2	>>>Sending special message...
+00:04.597	ID:4	my_tos_node_id: 4
+00:04.598	ID:2	Special code: 1
+00:04.601	ID:2	Acknowledgements are enabled
+00:04.602	ID:2	Preparing the special message...
+00:04.603	ID:1	Packet sent
+00:04.604	ID:1	ACK not recieved
+00:04.605	ID:1	Acknowledgements are enabled
+00:04.608	ID:2	Packet sent
+00:04.608	ID:1	Preparing the special message...
+00:04.608	ID:2	ACK recieved
+00:04.609	ID:2	Acknowledgements are enabled
+00:04.610	ID:1	>>>Sending special message...
+00:04.610	ID:2	Preparing the special message...
+00:04.611	ID:1	Special code: 1
+00:04.612	ID:1	Acknowledgements are enabled
+00:04.613	ID:2	>>>Sending special message...
+00:04.614	ID:1	Preparing the special message...
+00:04.614	ID:2	Special code: 1
+00:04.617	ID:2	Packet sent
+00:04.617	ID:1	Acknowledgements are enabled
+00:04.617	ID:2	ACK recieved
+00:04.618	ID:2	Acknowledgements are enabled
+00:04.619	ID:1	Preparing the special message...
+00:04.620	ID:2	Preparing the special message...
+00:04.621	ID:4	my_key: 13945678216985476321
+00:04.623	ID:4	Packet sent
+00:04.623	ID:1	Packet sent
+00:04.624	ID:2	>>>Sending special message...
+00:04.624	ID:1	ACK recieved
+00:04.624	ID:2	Special code: 1
+00:04.625	ID:1	Acknowledgements are enabled
+00:04.626	ID:2	Special message phase completed
+00:04.626	ID:1	Preparing the special message...
+00:04.628	ID:2	Starting ChildMilliTimer for mote 2
+00:04.629	ID:1	>>>Sending special message...
+00:04.631	ID:1	Special code: 1
+00:04.632	ID:2	Packet sent
+00:04.632	ID:2	ACK recieved
+00:04.632	ID:1	Special message phase completed
+00:04.637	ID:1	Packet sent
+00:04.637	ID:1	ACK recieved
+00:04.984	ID:3	Application booted
+00:04.987	ID:3	Split Control Start DONE!
+00:04.988	ID:3	STARTING PARENT no.3
+00:04.990	ID:3	Preparing the broadcast message...
+00:04.992	ID:3	>>>Sending broadcast message...
+00:04.993	ID:3	my_tos_node_id: 3
+00:05.000	ID:4	Preparing the broadcast message...
+00:05.003	ID:4	>>>Sending broadcast message...
+00:05.004	ID:4	my_tos_node_id: 4
+00:05.018	ID:3	my_key: 13945678216985476321
+00:05.019	ID:3	Packet sent
+00:05.020	ID:3	Preparing the broadcast message...
+00:05.023	ID:3	>>>Sending broadcast message...
+00:05.024	ID:3	my_tos_node_id: 3
+00:05.027	ID:4	my_key: 13945678216985476321
+00:05.028	ID:4	Packet sent
+00:05.029	ID:4	Broadcasting phase completed
+00:05.030	ID:4	Acknowledgements are enabled
+00:05.032	ID:4	Preparing the special message...
+00:05.035	ID:4	>>>Sending special message...
+00:05.036	ID:4	Special code: 1
+00:05.037	ID:4	Acknowledgements are enabled
+00:05.038	ID:4	Preparing the special message...
+00:05.048	ID:3	my_key: 13945678216985476321
+00:05.050	ID:3	Packet sent
+00:05.050	ID:4	Packet sent
+00:05.050	ID:4	ACK recieved
+00:05.051	ID:3	Broadcasting phase completed
+00:05.051	ID:4	Acknowledgements are enabled
+00:05.052	ID:3	Acknowledgements are enabled
+00:05.053	ID:4	Preparing the special message...
+00:05.053	ID:3	Preparing the special message...
+00:05.055	ID:4	>>>Sending special message...
+00:05.055	ID:3	>>>Sending special message...
+00:05.056	ID:4	Special code: 1
+00:05.057	ID:3	Special code: 1
+00:05.058	ID:3	Acknowledgements are enabled
+00:05.060	ID:3	Preparing the special message...
+00:05.061	ID:4	Special message phase completed
+00:05.062	ID:3	Packet sent
+00:05.063	ID:3	ACK recieved
+00:05.063	ID:4	Starting ChildMilliTimer for mote 4
+00:05.064	ID:3	Acknowledgements are enabled
+00:05.065	ID:4	Packet sent
+00:05.065	ID:4	ACK recieved
+00:05.065	ID:3	Preparing the special message...
+00:05.068	ID:3	>>>Sending special message...
+00:05.069	ID:3	Special code: 1
+00:05.071	ID:3	Special message phase completed
+00:05.072	ID:3	Packet sent
+00:05.073	ID:3	ACK recieved
+00:14.404	ID:2	Acknowledgements are enabled
+00:14.407	ID:2	>>>Reading data from Fake Sensor...
+00:14.408	ID:2	(x, y) -> (463, 142)
+00:14.409	ID:2	Status: RUNNING
+00:14.425	ID:2	Packet sent
+00:14.425	ID:2	ACK not recieved
+00:14.839	ID:4	Acknowledgements are enabled
+00:14.842	ID:4	>>>Reading data from Fake Sensor...
+00:14.844	ID:4	(x, y) -> (101, 52)
+00:14.844	ID:4	Status: FALLING
+00:14.848	ID:4	Packet sent
+00:14.849	ID:4	ACK recieved
+00:14.849	ID:3	>>>INFO message received from child mote:
+00:14.851	ID:3	(x, y) -> (101, 52)
+00:14.851	ID:3	Status: FALLING
+00:14.852	ID:3	FALLING ALARM
+00:24.170	ID:2	Acknowledgements are enabled
+00:24.172	ID:2	>>>Reading data from Fake Sensor...
+00:24.174	ID:2	(x, y) -> (424, 438)
+00:24.175	ID:2	Status: STANDING
+00:24.183	ID:2	Packet sent
+00:24.184	ID:2	ACK not recieved
+00:24.605	ID:4	Acknowledgements are enabled
+00:24.608	ID:4	>>>Reading data from Fake Sensor...
+00:24.609	ID:4	(x, y) -> (537, 283)
+00:24.610	ID:4	Status: RUNNING
+00:24.617	ID:4	Packet sent
+00:24.618	ID:4	ACK recieved
+00:24.618	ID:3	>>>INFO message received from child mote:
+00:24.618	ID:1	>>>INFO message received from child mote:
+00:24.620	ID:3	(x, y) -> (537, 283)
+00:24.620	ID:1	(x, y) -> (463, 142)
+00:24.620	ID:3	Status: RUNNING
+00:24.621	ID:1	Status: RUNNING
+00:24.626	ID:1	>>>INFO message received from child mote:
+00:24.627	ID:1	(x, y) -> (424, 438)
+00:24.628	ID:1	Status: STANDING
+00:33.935	ID:2	Acknowledgements are enabled
+00:33.938	ID:2	>>>Reading data from Fake Sensor...
+00:33.939	ID:2	(x, y) -> (563, 354)
+00:33.940	ID:2	Status: WALKING
+00:33.947	ID:2	Packet sent
+00:33.948	ID:2	ACK recieved
+00:33.948	ID:1	>>>INFO message received from child mote:
+00:33.950	ID:1	(x, y) -> (563, 354)
+00:33.951	ID:1	Status: WALKING
+00:34.371	ID:4	Acknowledgements are enabled
+00:34.373	ID:4	>>>Reading data from Fake Sensor...
+00:34.375	ID:4	(x, y) -> (611, 468)
+00:34.376	ID:4	Status: RUNNING
+00:34.385	ID:4	Packet sent
+00:34.385	ID:4	ACK recieved
+00:34.386	ID:3	>>>INFO message received from child mote:
+00:34.387	ID:3	(x, y) -> (611, 468)
+00:34.388	ID:3	Status: RUNNING
+00:43.701	ID:2	Acknowledgements are enabled
+00:43.704	ID:2	>>>Reading data from Fake Sensor...
+00:43.705	ID:2	(x, y) -> (412, 386)
+00:43.706	ID:2	Status: STANDING
+00:43.713	ID:2	Packet sent
+00:43.713	ID:2	ACK recieved
+00:43.714	ID:1	>>>INFO message received from child mote:
+00:43.715	ID:1	(x, y) -> (412, 386)
+00:43.716	ID:1	Status: STANDING
+00:44.136	ID:4	Acknowledgements are enabled
+00:44.139	ID:4	>>>Reading data from Fake Sensor...
+00:44.140	ID:4	(x, y) -> (345, 54)
+00:44.141	ID:4	Status: WALKING
+00:44.149	ID:4	Packet sent
+00:44.149	ID:4	ACK recieved
+00:44.150	ID:3	>>>INFO message received from child mote:
+00:44.151	ID:3	(x, y) -> (345, 54)
+00:44.152	ID:3	Status: WALKING
+00:53.467	ID:2	Acknowledgements are enabled
+00:53.469	ID:2	>>>Reading data from Fake Sensor...
+00:53.471	ID:2	(x, y) -> (556, 262)
+00:53.471	ID:2	Status: RUNNING
+00:53.478	ID:2	Packet sent
+00:53.478	ID:2	ACK recieved
+00:53.479	ID:1	>>>INFO message received from child mote:
+00:53.480	ID:1	(x, y) -> (556, 262)
+00:53.481	ID:1	Status: RUNNING
+00:53.902	ID:4	Acknowledgements are enabled
+00:53.905	ID:4	>>>Reading data from Fake Sensor...
+00:53.907	ID:4	(x, y) -> (632, 345)
+00:53.908	ID:4	Status: STANDING
+00:53.909	ID:4	Packet sent
+00:53.909	ID:4	ACK recieved
+00:53.909	ID:3	>>>INFO message received from child mote:
+00:53.911	ID:3	(x, y) -> (632, 345)
+00:53.912	ID:3	Status: STANDING
+01:03.232	ID:2	Acknowledgements are enabled
+01:03.235	ID:2	>>>Reading data from Fake Sensor...
+01:03.237	ID:2	(x, y) -> (76, 117)
+01:03.238	ID:2	Status: WALKING
+01:03.239	ID:2	Packet sent
+01:03.240	ID:2	ACK recieved
+01:03.240	ID:1	>>>INFO message received from child mote:
+01:03.242	ID:1	(x, y) -> (76, 117)
+01:03.242	ID:1	Status: WALKING
+01:03.668	ID:4	Acknowledgements are enabled
+01:03.670	ID:4	>>>Reading data from Fake Sensor...
+01:03.672	ID:4	(x, y) -> (429, 586)
+01:03.673	ID:4	Status: RUNNING
+01:03.676	ID:4	Packet sent
+01:03.677	ID:4	ACK recieved
+01:03.677	ID:3	>>>INFO message received from child mote:
+01:03.679	ID:3	(x, y) -> (429, 586)
+01:03.679	ID:3	Status: RUNNING
+01:12.998	ID:2	Acknowledgements are enabled
+01:13.000	ID:2	>>>Reading data from Fake Sensor...
+01:13.002	ID:2	(x, y) -> (483, 590)
+01:13.003	ID:2	Status: RUNNING
+01:13.012	ID:2	Packet sent
+01:13.013	ID:2	ACK not recieved
+01:13.433	ID:4	Acknowledgements are enabled
+01:13.436	ID:4	>>>Reading data from Fake Sensor...
+01:13.437	ID:4	(x, y) -> (370, 57)
+01:13.438	ID:4	Status: RUNNING
+01:13.447	ID:4	Packet sent
+01:13.448	ID:4	ACK recieved
+01:13.448	ID:3	>>>INFO message received from child mote:
+01:13.450	ID:3	(x, y) -> (370, 57)
+01:13.450	ID:3	Status: RUNNING
+01:22.763	ID:2	Acknowledgements are enabled
+01:22.766	ID:2	>>>Reading data from Fake Sensor...
+01:22.768	ID:2	(x, y) -> (165, 596)
+01:22.768	ID:2	Status: RUNNING
+01:22.782	ID:2	Packet sent
+01:22.783	ID:2	ACK not recieved
+01:23.199	ID:4	Acknowledgements are enabled
+01:23.202	ID:4	>>>Reading data from Fake Sensor...
+01:23.203	ID:4	(x, y) -> (445, 537)
+01:23.204	ID:4	Status: RUNNING
+01:23.212	ID:4	Packet sent
+01:23.213	ID:4	ACK recieved
+01:23.213	ID:3	>>>INFO message received from child mote:
+01:23.215	ID:3	(x, y) -> (445, 537)
+01:23.215	ID:3	Status: RUNNING
+01:32.529	ID:2	Acknowledgements are enabled
+01:32.532	ID:2	>>>Reading data from Fake Sensor...
+01:32.534	ID:2	(x, y) -> (584, 578)
+01:32.535	ID:2	Status: STANDING
+01:32.542	ID:2	Packet sent
+01:32.543	ID:2	ACK not recieved
+01:32.964	ID:4	Acknowledgements are enabled
+01:32.967	ID:4	>>>Reading data from Fake Sensor...
+01:32.969	ID:4	(x, y) -> (21, 272)
+01:32.969	ID:4	Status: RUNNING
+01:32.973	ID:4	Packet sent
+01:32.974	ID:4	ACK recieved
+01:32.974	ID:3	>>>INFO message received from child mote:
+01:32.976	ID:3	(x, y) -> (21, 272)
+01:32.976	ID:3	Status: RUNNING
+01:42.295	ID:2	Acknowledgements are enabled
+01:42.297	ID:2	>>>Reading data from Fake Sensor...
+01:42.299	ID:2	(x, y) -> (163, 314)
+01:42.299	ID:2	Status: WALKING
+01:42.312	ID:2	Packet sent
+01:42.313	ID:2	ACK not recieved
+01:42.730	ID:4	Acknowledgements are enabled
+01:42.733	ID:4	>>>Reading data from Fake Sensor...
+01:42.734	ID:4	(x, y) -> (330, 375)
+01:42.735	ID:4	Status: STANDING
+01:42.742	ID:4	Packet sent
+01:42.742	ID:4	ACK recieved
+01:42.743	ID:3	>>>INFO message received from child mote:
+01:42.744	ID:3	(x, y) -> (330, 375)
+01:42.745	ID:3	Status: STANDING
+01:52.060	ID:2	Acknowledgements are enabled
+01:52.063	ID:2	>>>Reading data from Fake Sensor...
+01:52.064	ID:2	(x, y) -> (618, 116)
+01:52.065	ID:2	Status: STANDING
+01:52.076	ID:2	Packet sent
+01:52.077	ID:2	ACK not recieved
+01:52.496	ID:4	Acknowledgements are enabled
+01:52.498	ID:4	>>>Reading data from Fake Sensor...
+01:52.500	ID:4	(x, y) -> (638, 353)
+01:52.501	ID:4	Status: STANDING
+01:52.508	ID:4	Packet sent
+01:52.508	ID:4	ACK recieved
+01:52.509	ID:3	>>>INFO message received from child mote:
+01:52.510	ID:3	(x, y) -> (638, 353)
+01:52.511	ID:3	Status: STANDING
+02:01.826	ID:2	Acknowledgements are enabled
+02:01.829	ID:2	>>>Reading data from Fake Sensor...
+02:01.831	ID:2	(x, y) -> (212, 396)
+02:01.831	ID:2	Status: WALKING
+02:01.837	ID:1	No more INFO messages received after 1 minute...
+02:01.838	ID:2	Packet sent
+02:01.838	ID:1	>>>Last position received: 
+02:01.839	ID:2	ACK not recieved
+02:01.840	ID:1	(x, y) -> (76, 117)
+02:01.840	ID:1	MISSING ALARM
+02:02.261	ID:4	Acknowledgements are enabled
+02:02.264	ID:4	>>>Reading data from Fake Sensor...
+02:02.266	ID:4	(x, y) -> (429, 563)
+02:02.266	ID:4	Status: STANDING
+02:02.273	ID:4	Packet sent
+02:02.274	ID:4	ACK recieved
+02:02.274	ID:3	>>>INFO message received from child mote:
+02:02.276	ID:3	(x, y) -> (429, 563)
+02:02.276	ID:3	Status: STANDING
